@@ -106,7 +106,7 @@ export const NFTCollection = () => {
   const asicCollection = [
     {
       name: 'ASIC SX Ultra Pro',
-      image: 'https://landing-tau-inky-61.vercel.app/assets/ASIC_XP_Ultra_Pro-dM4ViSFP.jpg',
+      image: Asic_SX,
       hashrate: '600 Gh/s',
       miningRate: '1500 solBTC/d',
       powerConsumption: '3000 kW/h',
