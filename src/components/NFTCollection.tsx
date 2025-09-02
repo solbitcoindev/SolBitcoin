@@ -2,6 +2,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Zap, TrendingUp, Activity } from 'lucide-react';
+import Asic_SX from '@/assets/images/Asics/ASIC_XP_Ultra_Pro.jpg';
+import Asic_S21 from '@/assets/images/Asics/ASIC_S21_XP+.jpg';
+import Asic_S19 from '@/assets/images/Asics/ASIC_S19_XP+.jpg';
+import Asic_S17 from '@/assets/images/Asics/ASIC_S17_XP.jpg';
 
 interface ASICCardProps {
   name: string;
@@ -102,7 +106,7 @@ export const NFTCollection = () => {
   const asicCollection = [
     {
       name: 'ASIC SX Ultra Pro',
-      image: 'https://github.com/PavelDurovDev/Landing-2/blob/main/src/assets/images/Asics/ASIC_XP_Ultra_Pro.jpg',
+      image: Asic_SX,
       hashrate: '600 Gh/s',
       miningRate: '1500 solBTC/d',
       powerConsumption: '3000 kW/h',
@@ -113,7 +117,7 @@ export const NFTCollection = () => {
     },
     {
       name: 'ASIC S21 XP+',
-      image: 'https://landing-tau-inky-61.vercel.app/assets/ASIC_S21_XP_-aCkf9dcR.jpg',
+      image: Asic_S21,
       hashrate: '250 Gh/s',
       miningRate: '625 solBTC/d',
       powerConsumption: '1460 kW/h',
@@ -124,7 +128,7 @@ export const NFTCollection = () => {
     },
     {
       name: 'ASIC S19 XP+',
-      image: 'https://landing-tau-inky-61.vercel.app/assets/ASIC_S19_XP_-D8BxRki3.jpg',
+      image: Asic_S19,
       hashrate: '100 Gh/s',
       miningRate: '250 solBTC/d',
       powerConsumption: '670 kW/h',
@@ -135,7 +139,7 @@ export const NFTCollection = () => {
     },
     {
       name: 'ASIC S17 XP',
-      image: 'https://landing-tau-inky-61.vercel.app/assets/ASIC_S17_XP-DGqfgGhw.jpg',
+      image: Asic_S17,
       hashrate: '40 Gh/s',
       miningRate: '100 solBTC/d',
       powerConsumption: '320 kW/h',
