@@ -13,7 +13,7 @@ export const SocialLinks = () => {
       icon: MessageCircle,
       label: 'Discord',
       href: 'https://discord.com/invite/dRzrfpbd',
-      color: 'hover:text-indigo-400'
+      color: 'hover:text-black-100'
     },
     {
       icon: Send,
