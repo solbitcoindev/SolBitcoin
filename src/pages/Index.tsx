@@ -84,22 +84,22 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section 
-        id="home" 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      <section
+        id="home"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden md:pt-0 pt-16"
         style={{
           backgroundImage: `linear-gradient(rgba(15, 16, 31, 0.8), rgba(15, 16, 31, 0.9)), url(${heroBackground})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
+          backgroundAttachment: 'scroll'
         }}
       >
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="animate-fade-in-up">
-            <h1 className="hero-title mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
               SolBitcoin
             </h1>
-            <p className="hero-subtitle mb-8 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
               An exciting crypto game that immerses players in the world of $SolBTC mining through the Solana ecosystem. 
               Choose your class and start earning real rewards.
             </p>
@@ -109,14 +109,14 @@ const Index = () => {
               <SocialLinks />
             </div>
 
-            {/* Launch Countdown */}
-            <div className="mb-12">
+            {/* Launch Countdown - скрываем на мобильных */}
+            <div className="mb-12 hidden md:block">
               <h2 className="text-3xl font-bold gradient-text mb-8 font-space">Launch Countdown</h2>
               <CountdownTimer />
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col gap-4 justify-center items-center">
               <Button 
                 size="lg" 
                 className="bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary animate-pulse-glow px-8 py-4 text-lg"

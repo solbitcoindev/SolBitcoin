@@ -20,7 +20,7 @@ export const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold gradient-text font-space">
+            <h1 className="text-xl md:text-2xl font-bold gradient-text font-space">
               SolBitcoin
             </h1>
           </div>
@@ -71,6 +71,11 @@ export const Navigation = () => {
                   {item.label}
                 </a>
               ))}
+              <div className="pt-2">
+                <Button variant="default" className="w-full bg-gradient-primary text-primary-foreground">
+                  Start Mining
+                </Button>
+              </div>
               <div className="pt-4">
                 <Button variant="default" className="w-full bg-gradient-primary text-primary-foreground">
                   Start Mining
