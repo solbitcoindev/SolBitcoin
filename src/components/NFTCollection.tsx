@@ -102,7 +102,7 @@ export const NFTCollection = () => {
   const asicCollection = [
     {
       name: 'ASIC SX Ultra Pro',
-      image: 'src/assets/images/Asics/ASIC_XP_Ultra_Pro.jpg',
+      image: 'https://github.com/PavelDurovDev/Landing-2/blob/main/src/assets/images/Asics/ASIC_XP_Ultra_Pro.jpg',
       hashrate: '600 Gh/s',
       miningRate: '1500 solBTC/d',
       powerConsumption: '3000 kW/h',
