@@ -19,7 +19,7 @@ export const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center mt-2 md:mt-0">
             <h1 className="text-2xl font-bold gradient-text font-space">
               SolBitcoin
             </h1>
@@ -51,8 +51,9 @@ export const Navigation = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
+              className="h-10 w-10"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
             </Button>
           </div>
         </div>
@@ -65,7 +66,7 @@ export const Navigation = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="block px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}

@@ -84,23 +84,23 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section 
-        id="home" 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      <section
+        id="home"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-0"
         style={{
           backgroundImage: `linear-gradient(rgba(15, 16, 31, 0.8), rgba(15, 16, 31, 0.9)), url(${heroBackground})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
+          backgroundAttachment: 'scroll'
         }}
       >
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="animate-fade-in-up">
-            <h1 className="hero-title mb-6">
+            <h1 className="hero-title mb-4 md:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
               SolBitcoin
             </h1>
-            <p className="hero-subtitle mb-8 max-w-3xl mx-auto">
-              An exciting crypto game that immerses players in the world of $SolBTC mining through the Solana ecosystem. 
+            <p className="hero-subtitle mb-6 md:mb-8 max-w-3xl mx-auto text-sm sm:text-base md:text-lg">
+              An exciting crypto game that immerses players in the world of $SolBTC mining through the Solana ecosystem.
               Choose your class and start earning real rewards.
             </p>
             
