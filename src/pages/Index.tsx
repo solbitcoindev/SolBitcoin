@@ -119,7 +119,7 @@ const Index = () => {
             <div className="flex flex-col gap-4 justify-center items-center">
               <Button 
                 size="lg" 
-                className="bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary animate-pulse-glow px-8 py-4 text-lg"
+                className="bg-gradient-primary text-primary-foreground hover:opacity-10 glow-primary animate-pulse-glow px-8 py-4 text-lg"
               >
                 Start Playing Now
                 <ArrowRight className="ml-2 h-5 w-5" />
