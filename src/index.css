@@ -146,6 +146,53 @@
     border-color: hsl(var(--primary));
   }
   
+
+/* Notebook-specific adjustments */
+  @media (max-width: 1440px) {
+    .hero-title {
+      font-size: 4rem !important;
+      line-height: 1;
+      margin-top: 0rem; /* Увеличиваем отступ сверху */
+    }
+    
+    .hero-subtitle {
+      font-size: 0.9rem !important;
+      padding: 0 1rem;
+    }
+    .social-links {
+      margin-bottom: -1rem;
+    }
+
+    .countdown-box {
+      margin-top: -1rem;
+      padding: 0.5rem;
+    }
+  
+    .class-card {
+      max-width: 100%;
+      margin-bottom: 1.5rem;
+    }
+  
+    /* Навигация */
+    .nav-link {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+  
+  /* Tablet adjustments */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .hero-title {
+      font-size: 5rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+
+
+
   /* Mobile-specific adjustments */
   @media (max-width: 768px) {
     .hero-title {
