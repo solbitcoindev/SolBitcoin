@@ -1,6 +1,6 @@
 import { Twitter, MessageCircle, Send, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import twitterIcon from '@/assets/images/icons/x.webp';
+import twitterIcon from '@/assets/images/icons/x_logo.webp';
 import discordIcon from '@/assets/images/icons/Discord_logo.webp';
 import telegramIcon from '@/assets/images/icons/Telegram_logo.webp';
 import mediumIcon from '@/assets/images/icons/Medium_logo.webp';
