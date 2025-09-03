@@ -155,6 +155,10 @@
     }
   }
 
+    .social-links {
+    margin-bottom: -1rem;
+  }
+
   /* Tablet adjustments */
   @media (min-width: 769px) and (max-width: 1024px) {
     .hero-title {
@@ -167,9 +171,9 @@
   /* Mobile-specific adjustments */
   @media (max-width: 768px) {
     .hero-title {
-      font-size: 2.5rem !important;
+      font-size: 3rem !important;
       line-height: 1;
-      margin-top: 0rem; /* Увеличиваем отступ сверху */
+      margin-top: 2rem; /* Увеличиваем отступ сверху */
     }
     
     .hero-subtitle {
