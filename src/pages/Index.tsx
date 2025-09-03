@@ -109,20 +109,19 @@ const Index = () => {
               <SocialLinks />
             </div>
 
-            {/* Launch Countdown - скрываем на мобильных */}
+            {/* Launch Countdown */}
             <div className="mb-12 block">
               <h2 className="text-3xl font-bold gradient-text mb-8 font-space">Launch Countdown</h2>
               <CountdownTimer />
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col gap-4 justify-center items-center">
+            <div className="flex flex-col gap-4 justify-center items-center mb-24">
               <Button 
                 size="lg" 
-                //"bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary animate-pulse-glow px-8 py-4 text-lg"
                 className="bg-gradient-primary text-black font-bold hover:opacity-90 glow-primary animate-pulse-glow px-8 py-4 text-lg"
               >
-                  Mine $sBTC First
+                Mine $sBTC First
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
@@ -136,31 +135,10 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
-          <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
+            {/* Scroll indicator */}
+            <div className="absolute bottom-8 inset-x-0 flex justify-center animate-bounce">
+            <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
             <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
-          </div>
-        </div>
-      </section>
-
-      {/* Player Classes Section */}
-      <section id="classes" className="py-24 bg-background-secondary">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold gradient-text mb-6 font-space">Choose Your Class</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Each class offers unique gameplay mechanics and earning opportunities. 
-              Select the path that matches your strategy and start your SolBitcoin journey.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {playerClasses.map((playerClass, index) => (
-              <div key={playerClass.title} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
-                <ClassCard {...playerClass} />
-              </div>
-            ))}
           </div>
         </div>
       </section>
