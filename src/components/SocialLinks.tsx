@@ -1,9 +1,9 @@
 import { Twitter, MessageCircle, Send, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import twitterIcon from '@/assets/images/icons/x_logo.svg';
-import discordIcon from '@/assets/images/icons/Discord_logo.svg';
-import telegramIcon from '@/assets/images/icons/Telegram_logo.svg';
-import mediumIcon from '@/assets/images/icons/Medium_logo.svg';
+import twitterIcon from '@/assets/icons/x_logo.webp';
+import discordIcon from '@/assets/icons/Discord_logo.webp';
+import telegramIcon from '@/assets/icons/Telegram_logo.webp';
+import mediumIcon from '@/assets/icons/Medium_logo.webp';
 
 export const SocialLinks = () => {
   const socialLinks = [
@@ -41,7 +41,8 @@ export const SocialLinks = () => {
           variant="outline"
           size="icon"
           asChild
-          className="border-border-secondary hover:border-primary hover:glow-primary transition-all duration-300"
+          //"border-border-secondary hover:border-primary hover:glow-primary transition-all duration-300"
+          className="h-14 w-14 flex items-center justify-center rounded-full border hover:border-primary hover:glow-primary transition-all duration-300"
         >
           <a
             href={link.href}
@@ -49,7 +50,7 @@ export const SocialLinks = () => {
             rel="noopener noreferrer"
             className={`${link.color} transition-colors`}
           >
-            <image className="h-5 w-5" />
+            <img src={link.icon} alt={link.label} className="h-7 w-7" />
             <span className="sr-only">{link.label}</span>
           </a>
         </Button>
