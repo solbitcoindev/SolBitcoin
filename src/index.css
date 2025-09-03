@@ -72,7 +72,7 @@
     /* Glow Effects */
     --glow-primary: 0 0 30px hsl(180 84% 45% / 0.5);
     --glow-secondary: 0 0 30px hsl(35 91% 55% / 0.5);
-    --glow-accent: 0 0 30px hsla(260, 90%, 70%, 0.164);
+    --glow-accent: 0 0 30px hsl(260 90% 70% / 0.5);
 
     /* Shadows */
     --shadow-sm: 0 2px 4px hsl(240 10% 3.9% / 0.5);
@@ -149,17 +149,21 @@
   /* Mobile-specific adjustments */
   @media (max-width: 768px) {
     .hero-title {
-      font-size: 3rem !important;
-      line-height: 1.2;
-      margin-top: 4rem; /* Увеличиваем отступ сверху */
+      font-size: 2.5rem !important;
+      line-height: 1;
+      margin-top: 0rem; /* Увеличиваем отступ сверху */
     }
     
     .hero-subtitle {
       font-size: 0.9rem !important;
       padding: 0 1rem;
     }
-  
+    .social-links {
+      margin-bottom: -1rem;
+    }
+
     .countdown-box {
+      margin-top: -1rem;
       padding: 0.5rem;
     }
   
