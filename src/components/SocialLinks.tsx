@@ -1,9 +1,9 @@
 import { Twitter, MessageCircle, Send, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import twitterIcon from '@/assets/images/icons/x_logo.webp';
-import discordIcon from '@/assets/images/icons/Discord_logo.webp';
-import telegramIcon from '@/assets/images/icons/Telegram_logo.webp';
-import mediumIcon from '@/assets/images/icons/Medium_logo.webp';
+import twitterIcon from '@/assets/images/icons/x_logo.svg';
+import discordIcon from '@/assets/images/icons/Discord_logo.svg';
+import telegramIcon from '@/assets/images/icons/Telegram_logo.svg';
+import mediumIcon from '@/assets/images/icons/Medium_logo.svg';
 
 export const SocialLinks = () => {
   const socialLinks = [
@@ -49,7 +49,7 @@ export const SocialLinks = () => {
             rel="noopener noreferrer"
             className={`${link.color} transition-colors`}
           >
-            <link.icon className="h-5 w-5" />
+            <image className="h-5 w-5" />
             <span className="sr-only">{link.label}</span>
           </a>
         </Button>
