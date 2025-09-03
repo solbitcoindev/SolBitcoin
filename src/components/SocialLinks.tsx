@@ -1,28 +1,32 @@
 import { Twitter, MessageCircle, Send, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import twitterIcon from '@/assets/images/icons/x.webp';
+import discordIcon from '@/assets/images/icons/Discord_logo.webp';
+import telegramIcon from '@/assets/images/icons/Telegram_logo.webp';
+import mediumIcon from '@/assets/images/icons/Medium_logo.webp';
 
 export const SocialLinks = () => {
   const socialLinks = [
     {
-      icon: Twitter,
+      icon: twitterIcon,
       label: 'Twitter',
       href: 'https://x.com/sBTC_x',
       color: 'hover:text-blue-400'
     },
     {
-      icon: MessageCircle,
+      icon: discordIcon,
       label: 'Discord',
       href: 'https://discord.com/invite/dRzrfpbd',
       color: 'hover:text-indigo-400'
     },
     {
-      icon: Send,
+      icon: telegramIcon,
       label: 'Telegram',
       href: '#',
       color: 'hover:text-blue-500'
     },
     {
-      icon: FileText,
+      icon: mediumIcon,
       label: 'Medium',
       href: '#',
       color: 'hover:text-green-400'
