@@ -59,27 +59,30 @@ export const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-background-secondary rounded-lg mt-2 border border-border">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="block px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => setIsOpen(false)}
+          {isOpen && (
+            <div className="md:hidden absolute top-full left-0 w-full z-50">
+              <div className="bg-background/90 backdrop-blur-md shadow-lg px-4 pt-4 pb-6 flex flex-col gap-3 rounded-none">
+                {navItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="block px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+
+                {/* Кнопка Start Mining */}
+                <Button
+                  variant="default"
+                  className="w-full bg-gradient-primary text-primary-foreground"
                 >
-                  {item.label}
-                </a>
-              ))}
-              <div className="pt-4">
-                <Button variant="default" className="w-full bg-gradient-primary text-primary-foreground">
                   Start Mining
                 </Button>
               </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     </nav>
   );
