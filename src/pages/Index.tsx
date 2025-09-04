@@ -243,8 +243,10 @@ const Index = () => {
             <div className="mb-4 md:mb-0">
               <SocialLinks />
             </div>
+            <div className="rights">
             <div className="text-muted-foreground text-sm">
               © 2024 SolBitcoin. All rights reserved.
+            </div>
             </div>
           </div>
         </div>
