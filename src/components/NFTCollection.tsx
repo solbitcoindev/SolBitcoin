@@ -176,8 +176,8 @@ const ASICCard = ({
             </Badge>
           </div>
 
-          <Button className="w-full bg-gradient-secondary text-secondary-foreground hover:opacity-90 glow-secondary">
-            Buy Now
+          <Button className="w-full bg-gradient-secondary text-secondary-foreground hover:opacity-90 glow-secondary font-bold">
+            Buy Now 
           </Button>
         </div>
       </CardContent>
