@@ -143,6 +143,27 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Player Classes Section */}
+      <section id="classes" className="py-24 bg-background-secondary">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold gradient-text mb-6 font-space">Choose Your Class</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Each class offers unique gameplay mechanics and earning opportunities. 
+              Select the path that matches your strategy and start your SolBitcoin journey.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {playerClasses.map((playerClass, index) => (
+              <div key={playerClass.title} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
+                <ClassCard {...playerClass} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* NFT ASIC Collection */}
       <NFTCollection />
 
