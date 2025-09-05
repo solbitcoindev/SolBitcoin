@@ -10,6 +10,12 @@ interface ClassCardProps {
   glowColor: string;
 }
 
+const links: Record<string, string> = {
+  Energizer: "https://solbitcoin.gitbook.io/white-paper/game-mechanics/energizer-class",
+  Miner: "https://solbitcoin.gitbook.io/white-paper/game-mechanics/miner-class",
+  Investor: "https://solbitcoin.gitbook.io/white-paper/game-mechanics/investor-class",
+};
+
 export const ClassCard = ({ title, description, icon, features, gradient, glowColor }: ClassCardProps) => {
   return (
     <div className="class-card p-8 h-full group">
@@ -43,8 +49,9 @@ export const ClassCard = ({ title, description, icon, features, gradient, glowCo
         <Button 
           variant="outline" 
           className={`w-full ${gradient} text-primary-foreground border-0 hover:opacity-90 group-hover:${glowColor} transition-all duration-300`}
-        >
+        >  <a href={links[title]} target="_blank" rel="noopener noreferrer">
           Learn more about {title}
+          </a>
           <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </Button>
       </div>

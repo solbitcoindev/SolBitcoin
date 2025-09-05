@@ -124,12 +124,15 @@ const Index = () => {
                 Mine $sBTC First
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                asChild
+                variant="outline"
                 size="lg"
                 className="border-border-secondary hover:border-primary hover:glow-primary px-8 py-4 text-lg"
               >
-                Learn More
+                <a href="https://solbitcoin.gitbook.io/white-paper/" target="_blank" rel="noopener noreferrer">
+                  Learn More
+                </a>
               </Button>
             </div>
           </div>
@@ -221,8 +224,9 @@ const Index = () => {
               variant="outline" 
               size="lg"
               className="border-border-secondary hover:border-secondary hover:glow-secondary px-8 py-4 text-lg"
-            >
+            ><a href="https://solbitcoin.gitbook.io/white-paper/" target="_blank" rel="noopener noreferrer">
               Read Whitepaper
+              </a>
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
