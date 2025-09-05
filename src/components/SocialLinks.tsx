@@ -1,9 +1,9 @@
 import { Twitter, MessageCircle, Send, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import twitterIcon from '@/assets/icons/x_logo.webp';
-import discordIcon from '@/assets/icons/Discord_logo.webp';
-import telegramIcon from '@/assets/icons/Telegram_logo.webp';
-import mediumIcon from '@/assets/icons/Medium_logo.webp';
+import twitterIcon from '@/assets/icons/social/x_logo.webp';
+import discordIcon from '@/assets/icons/social/Discord_logo.webp';
+import telegramIcon from '@/assets/icons/social/Telegram_logo.webp';
+import mediumIcon from '@/assets/icons/social/Medium_logo.webp';
 
 export const SocialLinks = () => {
   const socialLinks = [

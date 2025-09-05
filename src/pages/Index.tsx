@@ -10,29 +10,29 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Zap, Pickaxe, TrendingUp, Shield, Coins, Users } from 'lucide-react';
 
 import heroBackground from '@/assets/gif/BG_main.gif';
-import energizerIcon from '@/assets/images/background/BG_main.webp';
-import minerIcon from '@/assets/images/background/BG_main.webp';
-import investorIcon from '@/assets/images/background/BG_main.webp';
+import energizerIcon from '@/assets/icons/classes/energizer_logo.jpg';
+import minerIcon from '@/assets/icons/classes/miner_logo.jpg';
+import investorIcon from '@/assets/icons/classes/investor_logo.jpg';
 
 const Index = () => {
   const playerClasses = [
     {
       title: 'Energizer',
-      description: 'Generate energy through power plants and convert kW into real TON tokens. Tap, collect, and monetize your activity.',
+      description: 'Generate energy through power plants and convert kW into real SOL tokens. Tap, collect, and monetize your activity.',
       icon: energizerIcon,
       features: [
         'Tap-to-earn energy generation',
-        'Convert kW to TON tokens',
+        'Convert kW to SOL tokens',
         'Upgrade power plants',
         'Market-based income system',
         'Daily reward multipliers'
       ],
-      gradient: 'bg-gradient-to-br from-primary to-success',
-      glowColor: 'glow-primary'
+      gradient: 'bg-gradient-to-br from-secondary to-warning',
+      glowColor: 'glow-secondary'
     },
     {
       title: 'Miner',
-      description: 'Deep dive into $SolBTC mining operations. Use advanced tools and strategies to maximize your mining efficiency.',
+      description: 'Deep dive into $sBTC mining operations. Use advanced tools and strategies to maximize your mining efficiency.',
       icon: minerIcon,
       features: [
         'Advanced mining algorithms',
@@ -41,8 +41,8 @@ const Index = () => {
         'Hardware optimization',
         'Passive income streams'
       ],
-      gradient: 'bg-gradient-to-br from-secondary to-warning',
-      glowColor: 'glow-secondary'
+      gradient: 'bg-gradient-to-br from-primary to-success',
+      glowColor: 'glow-primary'
     },
     {
       title: 'Investor',
@@ -100,7 +100,7 @@ const Index = () => {
               SolBitcoin
             </h1>
             <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
-              An exciting crypto game that immerses players in the world of $SolBTC mining through the Solana ecosystem. 
+              An exciting crypto game that immerses players in the world of $sBTC mining through the Solana ecosystem. 
               Choose your class and start earning real rewards.
             </p>
             
@@ -156,7 +156,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {playerClasses.map((playerClass, index) => (
-              <div key={playerClass.title} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
+              <div key={playerClass.title} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.5}s` }}>
                 <ClassCard {...playerClass} />
               </div>
             ))}
@@ -205,7 +205,7 @@ const Index = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-5xl font-bold gradient-text mb-6 font-space">Ready to Start Mining?</h2>
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Join the SolBitcoin revolution and start earning real rewards today. 
+            Join the SolBitcoin revolution and start earning crypto rewards today. 
             Choose your class and begin your crypto gaming journey.
           </p>
           
@@ -214,7 +214,7 @@ const Index = () => {
               size="lg" 
               className="bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary px-8 py-4 text-lg"
             >
-              Launch Game
+              Start Mining
               <Zap className="ml-2 h-5 w-5" />
             </Button>
             <Button 
@@ -244,9 +244,9 @@ const Index = () => {
               <SocialLinks />
             </div>
             <div className="rights">
-            <div className="text-muted-foreground text-sm">
-              © 2024 SolBitcoin. All rights reserved.
-            </div>
+              <div className="text-muted-foreground text-sm">
+               © 2024 SolBitcoin. All rights reserved.
+              </div>
             </div>
           </div>
         </div>

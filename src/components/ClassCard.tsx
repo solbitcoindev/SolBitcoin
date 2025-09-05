@@ -44,7 +44,7 @@ export const ClassCard = ({ title, description, icon, features, gradient, glowCo
           variant="outline" 
           className={`w-full ${gradient} text-primary-foreground border-0 hover:opacity-90 group-hover:${glowColor} transition-all duration-300`}
         >
-          Choose {title}
+          Learn more about {title}
           <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </Button>
       </div>
