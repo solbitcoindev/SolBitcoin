@@ -388,7 +388,7 @@ export const NFTCollection = () => {
                   sectionRef.current?.scrollIntoView({ behavior: "smooth" });
                 }}
               >
-                Got it
+                Go it
               </Button>
             </div>
           ) : notificationReady ? (
