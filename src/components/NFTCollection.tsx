@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Bell, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -74,7 +74,7 @@ const ASICCard = ({
   const endColor = colors.end;
 
   return (
-    <Card className="class-card hover:scale-105 transition-all duration-300 border-border-secondary relative opacity-0 translate-y-4 animate-fade-in">
+    <Card className="class-card transform hover:scale-105 transition-all duration-300 border-border-secondary relative">
       <div className="relative">
         <img
           src={image}
@@ -189,7 +189,19 @@ const ASICCard = ({
 export const NFTCollection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
-  const [notificationClosed, setNotificationClosed] = useState(false);
+  const [notificationClosed, setNotificationClosed] = useState(true);
+  const [notificationReady, setNotificationReady] = useState(false);
+  const [bounceCompleted, setBounceCompleted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setNotificationReady(true);
+      // После завершения bounce-анимации включаем пульсацию
+      setTimeout(() => setBounceCompleted(true), 2000);
+    }, 3000); // 3 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const visibleCount = 4;
 
@@ -341,29 +353,38 @@ export const NFTCollection = () => {
   return (
     <section id="nft" ref={sectionRef} className="py-24 bg-background relative">
       {/* Notification */}
-      {!notificationClosed ? (
-        <div className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-purple-600 to-indigo-700 p-4 rounded-xl shadow-xl max-w-xs animate-pulse-scale">
-          <div className="flex justify-between items-start">
-            <div>
-              <h3 className="font-bold text-white text-lg mb-1">Notification</h3>
-              <p className="text-white/90">Launch Special: 50% OFF All ASICs!</p>
-            </div>
+      {notificationReady && !notificationClosed ? (
+        <div className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-purple-600 to-indigo-700 p-4 rounded-xl shadow-xl max-w-xs animate-notification-true-pulse-scale">
+          <div className="flex justify-between items-start mb-2">
+            <h3 className="font-bold text-white text-lg">Notification</h3>
             <button
               onClick={() => setNotificationClosed(true)}
-              className="text-white/80 hover:text-white ml-4"
+              className="text-white/80 hover:text-white"
             >
               <X className="h-5 w-5" />
             </button>
           </div>
+          <p className="text-white/90 mb-4">Launch Special: 50% OFF All ASICs!</p>
+          <Button
+            className="w-full bg-white text-purple-700 hover:bg-white/90 font-bold py-2"
+            onClick={() => {
+              setNotificationClosed(true);
+              sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Got it
+          </Button>
         </div>
-      ) : (
+      ) : notificationReady ? (
         <div
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-indigo-700 flex items-center justify-center cursor-pointer animate-pulse-scale"
+          className={`fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-indigo-700 flex items-center justify-center cursor-pointer
+            ${bounceCompleted ? 'animate-notification-pulse-scale' : 'animate-notification-bounce-once'}`}
           onClick={() => setNotificationClosed(false)}
         >
           <Bell className="h-6 w-6 text-white" />
+          <div className="absolute -top-0 -right-0 w-4 h-4 bg-red-500 rounded-full border-2 border-white"></div>
         </div>
-      )}
+      ) : null}
 
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
@@ -391,6 +412,7 @@ export const NFTCollection = () => {
                 <div
                   key={asic.name}
                   style={{ animationDelay: `${index * 0.1}s` }}
+                  className="transform transition-transform opacity-0 translate-y-4 animate-fade-in"
                 >
                   <ASICCard {...asic} />
                 </div>

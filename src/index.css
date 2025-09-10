@@ -397,12 +397,34 @@
     @apply bg-background text-foreground;
   }
 }
-/* Add new animation for notification */
-@keyframes pulse-scale {
+
+/* Уникальные анимации для уведомления */
+@keyframes notification-pulse-scale {
   0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  50% { transform: scale(1.2); }
   100% { transform: scale(1); }
 }
-.animate-pulse-scale {
-  animation: pulse-scale 2s infinite;
+
+@keyframes notification-true-pulse-scale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+@keyframes notification-bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-20px);}
+  60% {transform: translateY(-10px);}
+}
+
+.animate-notification-pulse-scale {
+  animation: notification-pulse-scale 2s infinite;
+}
+
+.animate-notification-true-pulse-scale {
+  animation: notification-true-pulse-scale 2s infinite;
+}
+
+.animate-notification-bounce-once {
+  animation: notification-bounce 1.5s ease 1;
 }
