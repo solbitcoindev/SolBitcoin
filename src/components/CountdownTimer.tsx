@@ -7,9 +7,9 @@ interface TimeLeft {
   seconds: number;
 }
 
-export const CountdownTimer = () => {
+export const CountdownTimer = ({ onFinish }: { onFinish: () => void }) => {
   const calculateTimeLeft = (): TimeLeft => {
-    const targetDate = new Date("2025-09-10T12:00:00");
+    const targetDate = new Date("2025-09-10T12:19:00");
     const now = new Date();
     const difference = targetDate.getTime() - now.getTime();
 
@@ -35,7 +35,21 @@ export const CountdownTimer = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const isFinished =
+    timeLeft.days === 0 &&
+    timeLeft.hours === 0 &&
+    timeLeft.minutes === 0 &&
+    timeLeft.seconds === 0;
+
+  useEffect(() => {
+    if (isFinished) {
+      onFinish(); // сообщаем родителю
+    }
+  }, [isFinished, onFinish]);
+
   const formatNumber = (num: number) => num.toString().padStart(2, '0');
+
+  if (isFinished) return null;
 
   return (
     <div className="flex gap-4 justify-center">
