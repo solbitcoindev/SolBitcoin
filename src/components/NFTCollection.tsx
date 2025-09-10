@@ -17,6 +17,9 @@ import Asic_S5 from "@/assets/images/Asics/ASIC_S5+.jpg";
 import Asic_S3 from "@/assets/images/Asics/ASIC_S3.jpg";
 import Asic_S1 from "@/assets/images/Asics/ASIC_S1.jpg";
 
+// Контроль отображения акции
+const SHOW_SALE = true; 
+
 interface ASICCardProps {
   name: string;
   image: string;
@@ -81,9 +84,11 @@ const ASICCard = ({
           alt={name}
           className="w-full h-50 min-h-[12.5rem] object-cover"
         />
-        <Badge className="absolute top-4 left-4 bg-gradient-secondary text-secondary-foreground">
-          {discount} OFF
-        </Badge>
+        {SHOW_SALE && (
+          <Badge className="absolute top-4 left-4 bg-gradient-secondary text-secondary-foreground">
+            {discount} OFF
+          </Badge>
+        )}
 
         {/* Рарность на нижней части картинки */}
         <div className="absolute bottom-0 left-0 w-full py-2 text-sm font-bold uppercase tracking-wide text-center overflow-hidden">
@@ -163,19 +168,27 @@ const ASICCard = ({
         </div>
 
         <div className="border-t border-border pt-4">
-          <div className="flex items-center justify-between mb-3">
-            <div>
-              <p className="text-muted-foreground line-through text-sm">
+          {SHOW_SALE ? (
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <p className="text-muted-foreground line-through text-sm">
+                  {originalPrice}
+                </p>
+                <p className="text-2xl font-bold gradient-text-secondary">
+                  {salePrice}
+                </p>
+              </div>
+              <Badge variant="destructive" className="animate-pulse">
+                SAVE {discount}
+              </Badge>
+            </div>
+          ) : (
+            <div className="text-center mb-3">
+              <p className="text-2xl font-bold gradient-text-secondary">
                 {originalPrice}
               </p>
-              <p className="text-2xl font-bold gradient-text-secondary">
-                {salePrice}
-              </p>
             </div>
-            <Badge variant="destructive" className="animate-pulse">
-              SAVE {discount}
-            </Badge>
-          </div>
+          )}
 
           <Button className="w-full bg-gradient-secondary text-secondary-foreground hover:opacity-90 glow-secondary font-bold">
             Buy Now 
@@ -352,40 +365,44 @@ export const NFTCollection = () => {
 
   return (
     <section id="nft" ref={sectionRef} className="py-24 bg-background relative">
-      {/* Notification */}
-      {notificationReady && !notificationClosed ? (
-        <div className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-purple-600 to-indigo-700 p-4 rounded-xl shadow-xl max-w-xs animate-notification-true-pulse-scale
+      {/* Notification - controlled by SHOW_SALE flag */}
+      {SHOW_SALE && (
+        <>
+          {notificationReady && !notificationClosed ? (
+            <div className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-purple-600 to-indigo-700 p-4 rounded-xl shadow-xl max-w-xs animate-notification-true-pulse-scale
                 max-sm:inset-x-0 max-sm:mx-auto max-sm:w-[90vw] max-sm:translate-x-0">
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="font-bold text-white text-lg">Notification</h3>
-            <button
-              onClick={() => setNotificationClosed(true)}
-              className="text-white/80 hover:text-white"
+              <div className="flex justify-between items-start mb-2">
+                <h3 className="font-bold text-white text-lg">Notification</h3>
+                <button
+                  onClick={() => setNotificationClosed(true)}
+                  className="text-white/80 hover:text-white"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              <p className="text-white/90 mb-4">Launch Special: 50% OFF All ASICs!</p>
+              <Button
+                className="w-full bg-white text-purple-700 hover:bg-white/90 font-bold py-2"
+                onClick={() => {
+                  setNotificationClosed(true);
+                  sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                Got it
+              </Button>
+            </div>
+          ) : notificationReady ? (
+            <div
+              className={`fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-indigo-700 flex items-center justify-center cursor-pointer
+                ${bounceCompleted ? 'animate-notification-pulse-scale' : 'animate-notification-bounce-once'}`}
+              onClick={() => setNotificationClosed(false)}
             >
-              <X className="h-5 w-5" />
-            </button>
-          </div>
-          <p className="text-white/90 mb-4">Launch Special: 50% OFF All ASICs!</p>
-          <Button
-            className="w-full bg-white text-purple-700 hover:bg-white/90 font-bold py-2"
-            onClick={() => {
-              setNotificationClosed(true);
-              sectionRef.current?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Got it
-          </Button>
-        </div>
-      ) : notificationReady ? (
-        <div
-          className={`fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-indigo-700 flex items-center justify-center cursor-pointer
-            ${bounceCompleted ? 'animate-notification-pulse-scale' : 'animate-notification-bounce-once'}`}
-          onClick={() => setNotificationClosed(false)}
-        >
-          <Bell className="h-6 w-6 text-white" />
-          <div className="absolute -top-0 -right-0 w-4 h-4 bg-red-500 rounded-full border-2 border-white"></div>
-        </div>
-      ) : null}
+              <Bell className="h-6 w-6 text-white" />
+              <div className="absolute -top-0 -right-0 w-4 h-4 bg-red-500 rounded-full border-2 border-white"></div>
+            </div>
+          ) : null}
+        </>
+      )}
 
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
