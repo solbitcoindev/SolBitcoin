@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { Bell, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -188,6 +189,7 @@ const ASICCard = ({
 export const NFTCollection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
+  const [notificationClosed, setNotificationClosed] = useState(false);
 
   const visibleCount = 4;
 
@@ -337,7 +339,32 @@ export const NFTCollection = () => {
   };
 
   return (
-    <section id="nft" ref={sectionRef} className="py-24 bg-background">
+    <section id="nft" ref={sectionRef} className="py-24 bg-background relative">
+      {/* Notification */}
+      {!notificationClosed ? (
+        <div className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-purple-600 to-indigo-700 p-4 rounded-xl shadow-xl max-w-xs animate-pulse-scale">
+          <div className="flex justify-between items-start">
+            <div>
+              <h3 className="font-bold text-white text-lg mb-1">Notification</h3>
+              <p className="text-white/90">Launch Special: 50% OFF All ASICs!</p>
+            </div>
+            <button
+              onClick={() => setNotificationClosed(true)}
+              className="text-white/80 hover:text-white ml-4"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-indigo-700 flex items-center justify-center cursor-pointer animate-pulse-scale"
+          onClick={() => setNotificationClosed(false)}
+        >
+          <Bell className="h-6 w-6 text-white" />
+        </div>
+      )}
+
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold gradient-text mb-6 font-space">

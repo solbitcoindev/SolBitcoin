@@ -397,3 +397,12 @@
     @apply bg-background text-foreground;
   }
 }
+/* Add new animation for notification */
+@keyframes pulse-scale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+.animate-pulse-scale {
+  animation: pulse-scale 2s infinite;
+}
