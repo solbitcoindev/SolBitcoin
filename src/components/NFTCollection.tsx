@@ -354,7 +354,8 @@ export const NFTCollection = () => {
     <section id="nft" ref={sectionRef} className="py-24 bg-background relative">
       {/* Notification */}
       {notificationReady && !notificationClosed ? (
-        <div className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-purple-600 to-indigo-700 p-4 rounded-xl shadow-xl max-w-xs animate-notification-true-pulse-scale">
+        <div className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-purple-600 to-indigo-700 p-4 rounded-xl shadow-xl max-w-xs animate-notification-true-pulse-scale
+                max-sm:inset-x-0 max-sm:mx-auto max-sm:w-[90vw] max-sm:translate-x-0">
           <div className="flex justify-between items-start mb-2">
             <h3 className="font-bold text-white text-lg">Notification</h3>
             <button
