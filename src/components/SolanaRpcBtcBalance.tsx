@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const WALLET = "GfQRKRTQKcQmtFfWCBNvw6652fZW5GUoDacL6Svu5mD4";
 const MINT = "BTCBZ6hrcn5g8MANyQep6QVqZWpD5TqjSUKTUKHivkfa";
-const API_URL = "http://localhost:8010/rpc-balance"; // если backend на другом сервере, укажите production URL
+const API_URL = "https://585f7ffdefb1.ngrok-free.app/rpc-balance"; // если backend на другом сервере, укажите production URL http://localhost:8010/rpc-balance
 
 export default function SolanaRpcBtcBalance() {
   const [balance, setBalance] = useState<string | null>(null);

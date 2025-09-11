@@ -118,7 +118,7 @@ const Index = () => {
             {/* ОДНА дата для проверки и таймера */}
             {(() => {
               // Дата указывается только здесь!
-              const DATE_STRING = "2025-09-11T17:35:00";
+              const DATE_STRING = "2025-09-20T17:35:00";
               const now = new Date();
               const targetDate = new Date(DATE_STRING);
               if (now >= targetDate || finished) {
