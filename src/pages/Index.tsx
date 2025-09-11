@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Navigation } from '@/components/Navigation';
 import { CountdownTimer } from '@/components/CountdownTimer';
+import SolanaRpcBtcBalance from '@/components/SolanaRpcBtcBalance';
 import { ClassCard } from '@/components/ClassCard';
 import { SocialLinks } from '@/components/SocialLinks';
 import { FloatingParticles } from '@/components/FloatingParticles';
@@ -112,13 +114,42 @@ const Index = () => {
               <SocialLinks />
             </div>
 
-            {/* Launch Countdown */}
-            {!finished && (
-              <div className="mb-12 block">
-                <h2 className="text-3xl font-bold gradient-text mb-8 font-space">Launch Countdown</h2>
-                <CountdownTimer onFinish={() => setFinished(true)} />
-              </div>
-            )}
+            {/* Launch Countdown or Mining tokens left with fade transition */}
+            {/* ОДНА дата для проверки и таймера */}
+            {(() => {
+              // Дата указывается только здесь!
+              const DATE_STRING = "2025-09-11T17:35:00";
+              const now = new Date();
+              const targetDate = new Date(DATE_STRING);
+              if (now >= targetDate || finished) {
+                return (
+                  <motion.div
+                    key="counter"
+                    className="mb-12 block"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.7 }}
+                  >
+                    <h2 className="text-3xl font-bold gradient-text mb-8 font-space">Tokens left to mine</h2>
+                    <SolanaRpcBtcBalance />
+                  </motion.div>
+                );
+              }
+              return (
+                <motion.div
+                  key="timer"
+                  className="mb-12 block"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7 }}
+                >
+                  <h2 className="text-3xl font-bold gradient-text mb-8 font-space">Launch Countdown</h2>
+                  <CountdownTimer onFinish={() => setFinished(true)} targetDate={DATE_STRING} />
+                </motion.div>
+              );
+            })()}
 
             {/* CTA Buttons */}
             <div className="flex flex-col gap-4 justify-center items-center mb-24">
@@ -230,7 +261,9 @@ const Index = () => {
               size="lg"
               className="border-border-secondary hover:border-secondary hover:glow-secondary px-8 py-4 text-lg"
             >
+              <a href="https://solbitcoin.gitbook.io/white-paper/" target="_blank" rel="noopener noreferrer">
               Read Whitepaper
+              </a>
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
