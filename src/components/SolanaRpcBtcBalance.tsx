@@ -30,7 +30,7 @@ export default function SolanaRpcBtcBalance() {
     };
 
     fetchBalance();
-    timer = setInterval(fetchBalance, 60000);
+    timer = setInterval(fetchBalance, 600000);
 
     return () => clearInterval(timer);
   }, []);
