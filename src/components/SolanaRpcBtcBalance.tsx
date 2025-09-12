@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-const WALLET = "GfQRKRTQKcQmtFfWCBNvw6652fZW5GUoDacL6Svu5mD4";
-const MINT = "BTCBZ6hrcn5g8MANyQep6QVqZWpD5TqjSUKTUKHivkfa";
-const API_URL = "https://parser-jgup.onrender.com/rpc-balance"; // если backend на другом сервере, укажите production URL http://localhost:8010/rpc-balance
+const WALLET = "8Tp9fFkZ2KcRBLYDTUNXo98Ez6ojGb6MZEPXfGDdeBzG";
+const MINT = "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN";
+const API_URL = "https://parser-jgup.onrender.com/rpc-balance"; // production URL или локалка
 
 export default function SolanaRpcBtcBalance() {
   const [balance, setBalance] = useState<string | null>(null);
@@ -11,11 +11,13 @@ export default function SolanaRpcBtcBalance() {
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
+
     const fetchBalance = async () => {
       try {
         setError(null);
         const res = await fetch(`${API_URL}?wallet=${WALLET}&mint=${MINT}`);
         const data = await res.json();
+
         if (typeof data.balance !== "undefined" && data.balance !== null) {
           setBalance(String(data.balance));
           setHasLoaded(true);
@@ -26,27 +28,58 @@ export default function SolanaRpcBtcBalance() {
         setError("API error");
       }
     };
+
     fetchBalance();
     timer = setInterval(fetchBalance, 60000);
+
     return () => clearInterval(timer);
   }, []);
 
-  let formatted = balance;
+  // Функция для форматирования с разделением разрядов
+  const formatNumber = (value: number, showDecimals: boolean) => {
+    const [intPart, decimals] = value.toFixed(2).split(".");
+
+    // Разбиваем целую часть по группам тысяч
+    const groups = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, " ").split(" ");
+
+    return showDecimals ? [...groups, ".", decimals] : groups;
+  };
+
+  let groups: string[] = [];
   if (balance && hasLoaded) {
     const num = Number(balance);
-    formatted = num.toFixed(2); // только точка, без запятых
+    const showDecimals =
+      typeof window !== "undefined" ? window.innerWidth >= 640 : true; // только на десктопе
+    groups = formatNumber(num, showDecimals);
   }
+
   return (
     <div className="flex flex-col items-center">
-      <div className="flex gap-4 justify-center">
+      <div className="flex justify-center flex-wrap gap-3.5 sm:gap-4">
         {!hasLoaded ? (
-          <div className="text-3xl font-bold gradient-text font-space">Loading...</div>
+          <div className="text-2xl sm:text-3xl font-bold gradient-text font-space">
+            Loading ...
+          </div>
         ) : (
-          formatted!.split("").map((char, i) => (
-            <div key={i} className="countdown-box">
-              <div className="relative z-10">
-                <div className="text-3xl font-bold gradient-text font-space">{char}</div>
-              </div>
+          groups.map((block, i) => (
+            <div
+              key={i}
+              className={`flex ${
+                block.length > 1 || block === "." ? "gap-2 sm:gap-2" : ""
+              }`}
+            >
+              {block.split("").map((char, j) => (
+                <div
+                  key={j}
+                  className="countdown-box w-8 h-12 sm:w-12 sm:h-16 flex items-center justify-center"
+                >
+                  <div className="relative z-10">
+                    <div className="text-xl sm:text-3xl font-bold gradient-text font-space">
+                      {char}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           ))
         )}
