@@ -10,7 +10,9 @@ import { NFTCollection } from '@/components/NFTCollection';
 import { Roadmap } from '@/components/Roadmap';
 import { Team } from '@/components/Team';
 import { Button } from '@/components/ui/button';
+import Launcher from '@/components/Launcher';
 import { ArrowRight, Zap, Shield, Coins, Users } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 import heroBackground from '@/assets/gif/BG_main.gif';
 import energizerIcon from '@/assets/icons/classes/energizer_logo.jpg';
@@ -19,6 +21,8 @@ import investorIcon from '@/assets/icons/classes/investor_logo.jpg';
 
 const Index = () => {
   const [finished, setFinished] = useState(false);
+  const [showLauncher, setShowLauncher] = useState(false);
+  const isMobile = useIsMobile();
 
   const playerClasses = [
     {
@@ -153,9 +157,16 @@ const Index = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col gap-4 justify-center items-center mb-24">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-gradient-primary text-black font-bold hover:opacity-90 glow-primary animate-pulse-glow px-8 py-4 text-lg"
+                onClick={() => {
+                  if (isMobile) {
+                    window.location.href = '/launcher';
+                  } else {
+                    setShowLauncher(true);
+                  }
+                }}
               >
                 Mine $sBTC First
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -292,6 +303,7 @@ const Index = () => {
           </div>
         </div>
       </footer>
+      {showLauncher && <Launcher onClose={() => setShowLauncher(false)} />}
     </div>
   );
 };
