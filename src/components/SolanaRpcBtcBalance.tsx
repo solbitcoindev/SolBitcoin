@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const WALLET = "8Tp9fFkZ2KcRBLYDTUNXo98Ez6ojGb6MZEPXfGDdeBzG";
-const MINT = "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN";
+const WALLET = "FWznbcNXWQuHTawe9RxvQ2LdCENssh12dsznf4RiouN5";
+const MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
 const API_URL = "https://parser-jgup.onrender.com/rpc-balance"; // production URL или локалка
 
 export default function SolanaRpcBtcBalance() {
