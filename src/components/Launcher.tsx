@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from '@/components/ui/button';
 import { Maximize2, Minimize2, X, ArrowLeft } from 'lucide-react';
@@ -10,24 +11,34 @@ interface LauncherProps {
 const Launcher: React.FC<LauncherProps> = ({ onClose }) => {
   const isMobile = useIsMobile();
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [position, setPosition] = useState<{ x: number; y: number }>({
-    x: 0,
-    y: 0,
-  });
   const [isDragging, setIsDragging] = useState(false);
-  const [dragOffset, setDragOffset] = useState<{ x: number; y: number }>({
-    x: 0,
-    y: 0,
-  });
+  const [dragOffset, setDragOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const windowRef = useRef<HTMLDivElement>(null);
 
-  // Начало перетаскивания
+  // 👉 Центрируем сразу при создании
+  const [position, setPosition] = useState<{ x: number; y: number }>(() => ({
+    x: window.innerWidth / 2 - 195,
+    y: window.innerHeight / 2 - 422,
+  }));
+
+  // Обновляем позицию при ресайзе экрана
+  useEffect(() => {
+    if (!isMobile) {
+      const handleResize = () => {
+        setPosition({
+          x: window.innerWidth / 2 - 195,
+          y: window.innerHeight / 2 - 422,
+        });
+      };
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, [isMobile]);
+
+  // Drag start
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (isMobile || isFullscreen) return;
-    if (!windowRef.current) return;
-
+    if (isMobile || isFullscreen || !windowRef.current) return;
     setIsDragging(true);
-
     const rect = windowRef.current.getBoundingClientRect();
     setDragOffset({
       x: e.clientX - rect.left,
@@ -35,7 +46,7 @@ const Launcher: React.FC<LauncherProps> = ({ onClose }) => {
     });
   };
 
-  // Перемещение
+  // Drag move
   const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging || isMobile || isFullscreen) return;
     setPosition({
@@ -44,19 +55,24 @@ const Launcher: React.FC<LauncherProps> = ({ onClose }) => {
     });
   };
 
-  // Окончание перетаскивания
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
+  const handleMouseUp = () => setIsDragging(false);
 
-  // Фуллскрин на ПК
+  useEffect(() => {
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isMobile, isDragging, dragOffset]);
+
+  // Toggle fullscreen
   const toggleFullscreen = () => {
     if (isMobile) return;
-
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch((e) => {
-        console.error(`Error attempting to enable fullscreen: ${e}`);
-      });
+      document.documentElement.requestFullscreen().catch(console.error);
       setIsFullscreen(true);
     } else {
       if (document.exitFullscreen) {
@@ -66,61 +82,35 @@ const Launcher: React.FC<LauncherProps> = ({ onClose }) => {
     }
   };
 
-  useEffect(() => {
-    if (!isMobile) {
-      // Для ПК центрируем окно при открытии
-      setPosition({
-        x: window.innerWidth/2 - 195,
-        y: window.innerHeight/2 - 422
-      });
-
-      // Добавляем обработчики для перетаскивания
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseup', handleMouseUp);
-        
-        // Выходим из полноэкранного режима при закрытии
-        if (document.fullscreenElement) {
-          document.exitFullscreen();
-        }
-      };
-    }
-  }, [isMobile]);
-
   return (
-    <div
-      className={`fixed inset-0 z-50 flex items-center justify-center ${
-        isMobile ? 'bg-background' : 'bg-black/50'
-      }`}
-      style={isMobile ? {} : { cursor: isDragging ? 'grabbing' : 'default' }}
+    <motion.div
+      className="fixed inset-0 z-[9999] pointer-events-none" // 👈 фон кликается
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
     >
-      <div
+      <motion.div
         ref={windowRef}
         className={`
-          relative bg-background border border-primary rounded-xl overflow-hidden
-          ${
-            isMobile
-              ? 'w-full h-full'
-              : isFullscreen
-              ? 'w-full h-full'
-              : 'w-[390px] h-[844px]'
-          }
-          transition-all duration-300
+          relative bg-background border border-primary rounded-xl overflow-hidden pointer-events-auto
+          ${isMobile ? 'w-full h-full' : isFullscreen ? 'w-full h-full' : 'w-[390px] h-[844px]'}
           ${isDragging ? 'shadow-xl' : ''}
         `}
         style={
           !isMobile && !isFullscreen
             ? {
-                position: 'absolute',
+                position: 'fixed', // 👈 теперь всегда фиксированное
                 left: `${position.x}px`,
                 top: `${position.y}px`,
-                cursor: isDragging ? 'grabbing' : 'grab'
+                cursor: isDragging ? 'grabbing' : 'grab',
               }
-            : {}
+            : { inset: 0 }
         }
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{ duration: 0.3 }}
       >
         {/* Заголовок */}
         <div
@@ -150,23 +140,17 @@ const Launcher: React.FC<LauncherProps> = ({ onClose }) => {
                 onClick={toggleFullscreen}
                 aria-label={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
               >
-                {isFullscreen ? (
-                  <Minimize2 size={20} />
-                ) : (
-                  <Maximize2 size={20} />
-                )}
+                {isFullscreen ? <Minimize2 size={20} /> : <Maximize2 size={20} />}
               </Button>
             )}
-            {!isMobile && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={onClose}
-                aria-label="Close launcher"
-              >
-                <X size={20} />
-              </Button>
-            )}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              aria-label="Close launcher"
+            >
+              <X size={20} />
+            </Button>
           </div>
         </div>
 
@@ -175,7 +159,6 @@ const Launcher: React.FC<LauncherProps> = ({ onClose }) => {
           <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64 flex items-center justify-center mb-6">
             <span className="text-muted-foreground">Game Preview</span>
           </div>
-
           <Button
             size="lg"
             className="bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary px-8 py-6 text-lg"
@@ -183,10 +166,9 @@ const Launcher: React.FC<LauncherProps> = ({ onClose }) => {
             Start Game
           </Button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
 export default Launcher;
-

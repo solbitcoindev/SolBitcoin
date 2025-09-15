@@ -22,76 +22,81 @@ import investorIcon from '@/assets/icons/classes/investor_logo.jpg';
 const Index = () => {
   const [finished, setFinished] = useState(false);
   const [showLauncher, setShowLauncher] = useState(false);
-  const isMobile = useIsMobile();
+
+  // Открытие лаунчера (единая функция)
+  const handleOpenLauncher = () => setShowLauncher(true);
 
   const playerClasses = [
     {
       title: 'Energizer',
-      description: 'Generate energy through power plants and convert kW into real SOL tokens. Tap, collect, and monetize your activity.',
+      description:
+        'Generate energy through power plants and convert kW into real SOL tokens. Tap, collect, and monetize your activity.',
       icon: energizerIcon,
       features: [
         'Tap-to-earn energy generation',
         'Convert kW to SOL tokens',
         'Upgrade power plants',
         'Market-based income system',
-        'Daily reward multipliers'
+        'Daily reward multipliers',
       ],
       gradient: 'bg-gradient-to-br from-secondary to-warning',
-      glowColor: 'glow-secondary'
+      glowColor: 'glow-secondary',
     },
     {
       title: 'Miner',
-      description: 'Deep dive into $sBTC mining operations. Use advanced tools and strategies to maximize your mining efficiency.',
+      description:
+        'Deep dive into $sBTC mining operations. Use advanced tools and strategies to maximize your mining efficiency.',
       icon: minerIcon,
       features: [
         'Advanced mining algorithms',
         'Solana blockchain integration',
         'Mining pool participation',
         'Hardware optimization',
-        'Passive income streams'
+        'Passive income streams',
       ],
       gradient: 'bg-gradient-to-br from-primary to-success',
-      glowColor: 'glow-primary'
+      glowColor: 'glow-primary',
     },
     {
       title: 'Investor',
-      description: 'Strategic investment opportunities in the SolBitcoin ecosystem. Build portfolios and maximize long-term returns.',
+      description:
+        'Strategic investment opportunities in the SolBitcoin ecosystem. Build portfolios and maximize long-term returns.',
       icon: investorIcon,
       features: [
         'Portfolio management tools',
         'Staking mechanisms',
         'Governance participation',
         'Yield farming opportunities',
-        'Risk assessment tools'
+        'Risk assessment tools',
       ],
       gradient: 'bg-gradient-to-br from-accent to-primary',
-      glowColor: 'glow-accent'
-    }
+      glowColor: 'glow-accent',
+    },
   ];
 
   const features = [
     {
       icon: Shield,
       title: 'Secure & Decentralized',
-      description: 'Built on Solana blockchain with non-custodial wallet integration'
+      description: 'Built on Solana blockchain with non-custodial wallet integration',
     },
     {
       icon: Coins,
       title: 'Real Rewards',
-      description: 'Earn actual TON tokens that can be traded on DEX platforms'
+      description: 'Earn actual TON tokens that can be traded on DEX platforms',
     },
     {
       icon: Users,
       title: 'Community Driven',
-      description: 'Join thousands of players in the SolBitcoin ecosystem'
-    }
+      description: 'Join thousands of players in the SolBitcoin ecosystem',
+    },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <FloatingParticles />
-      <Navigation />
-      
+      <Navigation onOpenLauncher={handleOpenLauncher} />
+
       {/* Hero Section */}
       <section
         id="home"
@@ -100,29 +105,25 @@ const Index = () => {
           backgroundImage: `linear-gradient(rgba(15, 16, 31, 0.8), rgba(15, 16, 31, 0.9)), url(${heroBackground})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'scroll'
+          backgroundAttachment: 'scroll',
         }}
       >
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="animate-fade-in-up">
-            <h1 className="hero-title mb-6">
-              SolBitcoin
-            </h1>
+            <h1 className="hero-title mb-6">SolBitcoin</h1>
             <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
-              An exciting crypto game that immerses players in the world of $sBTC mining through the Solana ecosystem. 
+              An exciting crypto game that immerses players in the world of $sBTC mining through the Solana ecosystem.
               Choose your class and start earning real rewards.
             </p>
-            
+
             {/* Social Links */}
             <div className="mb-12">
               <SocialLinks />
             </div>
 
-            {/* Launch Countdown or Mining tokens left with fade transition */}
-            {/* ОДНА дата для проверки и таймера */}
+            {/* Countdown / Balance */}
             {(() => {
-              // Дата указывается только здесь!
-              const DATE_STRING = "2025-09-12T12:35:00";
+              const DATE_STRING = '2025-09-12T12:35:00';
               const now = new Date();
               const targetDate = new Date(DATE_STRING);
               if (now >= targetDate || finished) {
@@ -160,13 +161,7 @@ const Index = () => {
               <Button
                 size="lg"
                 className="bg-gradient-primary text-black font-bold hover:opacity-90 glow-primary animate-pulse-glow px-8 py-4 text-lg"
-                onClick={() => {
-                  if (isMobile) {
-                    window.location.href = '/launcher';
-                  } else {
-                    setShowLauncher(true);
-                  }
-                }}
+                onClick={handleOpenLauncher}
               >
                 Mine $sBTC First
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -199,15 +194,19 @@ const Index = () => {
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold gradient-text mb-6 font-space">Choose Your Class</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Each class offers unique gameplay mechanics and earning opportunities. 
-              Select the path that matches your strategy and start your SolBitcoin journey.
+              Each class offers unique gameplay mechanics and earning opportunities. Select the path that matches your
+              strategy and start your SolBitcoin journey.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {playerClasses.map((playerClass, index) => (
-              <div key={playerClass.title} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.5}s` }}>
-                <ClassCard {...playerClass} />
+              <div
+                key={playerClass.title}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.5}s` }}
+              >
+                <ClassCard {...playerClass} /> {/* ✅ убрали onStartMining */}
               </div>
             ))}
           </div>
@@ -235,8 +234,8 @@ const Index = () => {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {features.map((feature, index) => (
-              <div 
-                key={feature.title} 
+              <div
+                key={feature.title}
                 className="text-center p-8 rounded-2xl bg-gradient-card border border-border-secondary hover:border-primary transition-all duration-300 group"
               >
                 <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-primary p-4 group-hover:glow-primary transition-all duration-300">
@@ -255,25 +254,26 @@ const Index = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-5xl font-bold gradient-text mb-6 font-space">Ready to Start Mining?</h2>
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Join the SolBitcoin revolution and start earning crypto rewards today. 
-            Choose your class and begin your crypto gaming journey.
+            Join the SolBitcoin revolution and start earning crypto rewards today. Choose your class and begin your
+            crypto gaming journey.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary px-8 py-4 text-lg"
+              onClick={handleOpenLauncher}
             >
               Start Mining
               <Zap className="ml-2 h-5 w-5" />
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="lg"
               className="border-border-secondary hover:border-secondary hover:glow-secondary px-8 py-4 text-lg"
             >
               <a href="https://solbitcoin.gitbook.io/white-paper/" target="_blank" rel="noopener noreferrer">
-              Read Whitepaper
+                Read Whitepaper
               </a>
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -296,14 +296,14 @@ const Index = () => {
               <SocialLinks />
             </div>
             <div className="rights">
-              <div className="text-muted-foreground text-sm">
-               © 2024 SolBitcoin. All rights reserved.
-              </div>
+              <div className="text-muted-foreground text-sm">© 2024 SolBitcoin. All rights reserved.</div>
             </div>
           </div>
         </div>
       </footer>
-      {showLauncher && <Launcher onClose={() => setShowLauncher(false)} />}
+
+      {/* Launcher */}
+      <AnimatePresence>{showLauncher && <Launcher onClose={() => setShowLauncher(false)} />}</AnimatePresence>
     </div>
   );
 };

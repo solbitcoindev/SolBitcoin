@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export const Navigation = () => {
+interface NavigationProps {
+  onOpenLauncher?: () => void;
+}
+
+export const Navigation: React.FC<NavigationProps> = ({ onOpenLauncher }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
@@ -38,9 +42,13 @@ export const Navigation = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Button (desktop) */}
           <div className="hidden md:block">
-            <Button variant="default" className="bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary">
+            <Button
+              variant="default"
+              className="bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary"
+              onClick={() => onOpenLauncher?.()}
+            >
               Start Mining
             </Button>
           </div>
@@ -59,30 +67,34 @@ export const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-          {isOpen && (
-            <div className="md:hidden absolute top-full left-0 w-full z-50">
-              <div className="bg-background/90 backdrop-blur-md shadow-lg px-4 pt-4 pb-6 flex flex-col gap-3 rounded-none">
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="block px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                ))}
-
-                {/* Кнопка Start Mining */}
-                <Button
-                  variant="default"
-                  className="w-full bg-gradient-primary text-primary-foreground"
+        {isOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 w-full z-50">
+            <div className="bg-background/90 backdrop-blur-md shadow-lg px-4 pt-4 pb-6 flex flex-col gap-3">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="block px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={() => setIsOpen(false)}
                 >
-                  Start Mining
-                </Button>
-              </div>
+                  {item.label}
+                </a>
+              ))}
+
+              {/* Кнопка Start Mining (mobile) */}
+              <Button
+                variant="default"
+                className="w-full bg-gradient-primary text-primary-foreground"
+                onClick={() => {
+                  setIsOpen(false);
+                  onOpenLauncher?.();
+                }}
+              >
+                Start Mining
+              </Button>
             </div>
-          )}
+          </div>
+        )}
       </div>
     </nav>
   );
