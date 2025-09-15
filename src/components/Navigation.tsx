@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import sBTCLogo from '@/assets/icons/logo/Logo_sBTC.png';
 
 interface NavigationProps {
   onOpenLauncher?: () => void;
@@ -23,7 +24,8 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenLauncher }) => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center mt-2 md:mt-0">
+          <div className="flex items-center mt-2 md:mt-0 space-x-2">
+            <img src={sBTCLogo} alt="sBTC Logo" className="w-8 h-8 object-contain" />
             <h1 className="text-2xl font-bold gradient-text font-space">
               SolBitcoin
             </h1>

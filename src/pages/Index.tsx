@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Navigation } from '@/components/Navigation';
 import { CountdownTimer } from '@/components/CountdownTimer';
@@ -13,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import Launcher from '@/components/Launcher';
 import { ArrowRight, Zap, Shield, Coins, Users } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-
+import sBTCLogo from '@/assets/icons/logo/Logo_sBTC.png';
 import heroBackground from '@/assets/gif/BG_main.gif';
 import energizerIcon from '@/assets/icons/classes/energizer_logo.jpg';
 import minerIcon from '@/assets/icons/classes/miner_logo.jpg';
@@ -22,9 +23,17 @@ import investorIcon from '@/assets/icons/classes/investor_logo.jpg';
 const Index = () => {
   const [finished, setFinished] = useState(false);
   const [showLauncher, setShowLauncher] = useState(false);
+  const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
-  // Открытие лаунчера (единая функция)
-  const handleOpenLauncher = () => setShowLauncher(true);
+  // Открытие лаунчера с учетом типа устройства
+  const handleOpenLauncher = () => {
+    if (isMobile) {
+      navigate('/launcher');
+    } else {
+      setShowLauncher(true);
+    }
+  };
 
   const playerClasses = [
     {
