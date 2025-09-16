@@ -428,3 +428,81 @@
 .animate-notification-bounce-once {
   animation: notification-bounce 1.5s ease 1;
 }
+
+.pulse {
+  position: relative;
+  overflow: visible;
+}
+
+.pulse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,200,0.35) 0%, transparent 70%);
+  animation: pulse-center 2.5s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse-center {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes glow-gradient {
+  0% { box-shadow: 0 0 8px rgba(0,255,200,0.2), inset 0 0 6px rgba(0,255,200,0.1); }
+  25% { box-shadow: 0 0 14px rgba(0,180,255,0.3), inset 0 0 8px rgba(0,180,255,0.15); }
+  50% { box-shadow: 0 0 12px rgba(0,255,200,0.2), inset 0 0 8px rgba(0,255,200,0.2); }
+  75% { box-shadow: 0 0 14px rgba(0,180,255,0.3), inset 0 0 8px rgba(0,180,255,0.15); }
+  100% { box-shadow: 0 0 8px rgba(0,255,200,0.2), inset 0 0 6px rgba(0,255,200,0.1); }
+}
+
+.animate-glow-gradient {
+  animation: glow-gradient 4s ease-in-out infinite;
+  border-radius: 0.75rem; /* скругление под rounded-xl */
+}
+
+@keyframes input-glow {
+  0% {
+    box-shadow:
+      inset 0 0 4px rgba(0, 255, 200, 0.1),
+      0 0 4px rgba(0, 255, 200, 0.15);
+  }
+  25% {
+    box-shadow:
+      inset 0 0 6px rgba(0, 200, 255, 0.2),
+      0 0 6px rgba(0, 200, 255, 0.25);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 5px rgba(0, 255, 220, 0.15),
+      0 0 5px rgba(0, 255, 220, 0.2);
+  }
+  75% {
+    box-shadow:
+      inset 0 0 6px rgba(0, 200, 255, 0.2),
+      0 0 6px rgba(0, 200, 255, 0.25);
+  }
+  100% {
+    box-shadow:
+      inset 0 0 4px rgba(0, 255, 200, 0.1),
+      0 0 4px rgba(0, 255, 200, 0.15);
+  }
+}
+
+.animate-input-glow {
+  animation: input-glow 4s ease-in-out infinite;
+  border-radius: 0.5rem; /* под rounded */
+}
+
+

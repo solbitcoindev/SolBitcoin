@@ -12,8 +12,10 @@ import { Roadmap } from '@/components/Roadmap';
 import { Team } from '@/components/Team';
 import { Button } from '@/components/ui/button';
 import Launcher from '@/components/Launcher';
+import MiningModal from '@/components/MiningModal'; // Импорт модалки
 import { ArrowRight, Zap, Shield, Coins, Users } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 import sBTCLogo from '@/assets/icons/logo/Logo_sBTC.png';
 import heroBackground from '@/assets/gif/BG_main.gif';
 import energizerIcon from '@/assets/icons/classes/energizer_logo.jpg';
@@ -23,11 +25,17 @@ import investorIcon from '@/assets/icons/classes/investor_logo.jpg';
 const Index = () => {
   const [finished, setFinished] = useState(false);
   const [showLauncher, setShowLauncher] = useState(false);
+  const [showMiningModal, setShowMiningModal] = useState(false);
   const isMobile = useIsMobile();
   const navigate = useNavigate();
 
-  // Открытие лаунчера с учетом типа устройства
+  // Открытие лаунчера с учетом типа устройства и состояния таймера
   const handleOpenLauncher = () => {
+    if (!finished) {
+      setShowMiningModal(true);
+      return;
+    }
+    
     if (isMobile) {
       navigate('/launcher');
     } else {
@@ -132,7 +140,7 @@ const Index = () => {
 
             {/* Countdown / Balance */}
             {(() => {
-              const DATE_STRING = '2025-09-12T12:35:00';
+              const DATE_STRING = '2025-09-27T12:00:00';
               const now = new Date();
               const targetDate = new Date(DATE_STRING);
               if (now >= targetDate || finished) {
@@ -313,6 +321,12 @@ const Index = () => {
 
       {/* Launcher */}
       <AnimatePresence>{showLauncher && <Launcher onClose={() => setShowLauncher(false)} />}</AnimatePresence>
+      
+      {/* Mining Modal */}
+      <MiningModal
+        isOpen={showMiningModal}
+        onClose={() => setShowMiningModal(false)}
+      />
     </div>
   );
 };

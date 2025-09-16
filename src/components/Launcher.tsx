@@ -93,8 +93,8 @@ const Launcher: React.FC<LauncherProps> = ({ onClose }) => {
       <motion.div
         ref={windowRef}
         className={`
-          relative bg-background border border-primary rounded-xl overflow-hidden pointer-events-auto
-          ${isMobile ? 'w-full h-full' : isFullscreen ? 'w-full h-full' : 'w-[390px] h-[844px]'}
+          relative bg-background border border-primary rounded-[30px] overflow-hidden pointer-events-auto
+          ${isMobile ? 'w-full h-full' : isFullscreen ? 'w-full h-full' : 'w-[390px] h-[802px]'}
           ${isDragging ? 'shadow-xl' : ''}
         `}
         style={
