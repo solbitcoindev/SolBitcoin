@@ -20,6 +20,33 @@ import Asic_S1 from "@/assets/images/Asics/ASIC_S1.jpg";
 // Контроль отображения акции
 const SHOW_SALE = true; 
 
+// курси (можеш підтягувати з API або міняти вручну)
+const sBTC_USDT = 0.10;
+const SOL_USDT = 235.42;
+
+// універсальна функція для підрахунку доходу
+function formatNumber(num: number): string {
+  if (num >= 0.01) return num.toFixed(2);   
+  return num.toFixed(3);                 
+}
+
+function calculateMonthlyIncome(miningRate: string): string {
+  const numericMining = parseFloat(miningRate);
+  if (isNaN(numericMining)) return "0 SOL";
+  const monthlySbtc = numericMining * 30;
+  const incomeSol = (monthlySbtc * sBTC_USDT) / SOL_USDT;
+  return formatNumber(incomeSol) + " SOL";
+}
+
+// універсальна функція для підрахунку акційної ціни
+function calculateSalePrice(originalPrice: string, discount: string): string {
+  const numericPrice = parseFloat(originalPrice);
+  const numericDiscount = parseFloat(discount);
+  if (isNaN(numericPrice) || isNaN(numericDiscount)) return originalPrice;
+  const result = numericPrice * (1 - numericDiscount / 100);
+  return result.toFixed(2) + " SOL";
+}
+
 interface ASICCardProps {
   name: string;
   image: string;
@@ -226,13 +253,13 @@ export const NFTCollection = () => {
     hashrate: "600 Gh/s",
     miningRate: "1500 sBTC/d",
     powerConsumption: "3000 kW/h",
-    monthlyIncome: "0.5 SOL",
+    get monthlyIncome() {
+      return calculateMonthlyIncome(this.miningRate);
+    },
     originalPrice: "51.2 SOL",
     discount: "50%",
     get salePrice() {
-      const numericPrice = parseFloat(this.originalPrice);
-      const numericDiscount = parseFloat(this.discount);
-      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
+      return calculateSalePrice(this.originalPrice, this.discount);
     },
   },
   {
@@ -242,13 +269,13 @@ export const NFTCollection = () => {
     hashrate: "250 Gh/s",
     miningRate: "625 sBTC/d",
     powerConsumption: "1460 kW/h",
-    monthlyIncome: "0.2 SOL",
+    get monthlyIncome() {
+      return calculateMonthlyIncome(this.miningRate);
+    },
     originalPrice: "25.6 SOL",
     discount: "50%",
     get salePrice() {
-      const numericPrice = parseFloat(this.originalPrice);
-      const numericDiscount = parseFloat(this.discount);
-      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
+      return calculateSalePrice(this.originalPrice, this.discount);
     },
   },
   {
@@ -258,13 +285,13 @@ export const NFTCollection = () => {
     hashrate: "100 Gh/s",
     miningRate: "250 sBTC/d",
     powerConsumption: "670 kW/h",
-    monthlyIncome: "0.1 SOL",
+    get monthlyIncome() {
+      return calculateMonthlyIncome(this.miningRate);
+    },
     originalPrice: "12.8 SOL",
     discount: "50%",
     get salePrice() {
-      const numericPrice = parseFloat(this.originalPrice);
-      const numericDiscount = parseFloat(this.discount);
-      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
+      return calculateSalePrice(this.originalPrice, this.discount);
     },
   },
   {
@@ -274,13 +301,13 @@ export const NFTCollection = () => {
     hashrate: "40 Gh/s",
     miningRate: "100 sBTC/d",
     powerConsumption: "320 kW/h",
-    monthlyIncome: "0.08 SOL",
+    get monthlyIncome() {
+      return calculateMonthlyIncome(this.miningRate);
+    },
     originalPrice: "6.4 SOL",
     discount: "50%",
     get salePrice() {
-      const numericPrice = parseFloat(this.originalPrice);
-      const numericDiscount = parseFloat(this.discount);
-      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
+      return calculateSalePrice(this.originalPrice, this.discount);
     },
   },
   {
@@ -290,13 +317,13 @@ export const NFTCollection = () => {
     hashrate: "15 Gh/s",
     miningRate: "37.5 sBTC/d",
     powerConsumption: "125 kW/h",
-    monthlyIncome: "0.08 SOL",
+    get monthlyIncome() {
+      return calculateMonthlyIncome(this.miningRate);
+    },
     originalPrice: "3.2 SOL",
     discount: "50%",
     get salePrice() {
-      const numericPrice = parseFloat(this.originalPrice);
-      const numericDiscount = parseFloat(this.discount);
-      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
+      return calculateSalePrice(this.originalPrice, this.discount);
     },
   },
   {
@@ -306,13 +333,13 @@ export const NFTCollection = () => {
     hashrate: "6 Gh/s",
     miningRate: "15 sBTC/d",
     powerConsumption: "52 kW/h",
-    monthlyIncome: "0.08 SOL",
+    get monthlyIncome() {
+      return calculateMonthlyIncome(this.miningRate);
+    },
     originalPrice: "1.6 SOL",
     discount: "50%",
     get salePrice() {
-      const numericPrice = parseFloat(this.originalPrice);
-      const numericDiscount = parseFloat(this.discount);
-      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
+      return calculateSalePrice(this.originalPrice, this.discount);
     },
   },
   {
@@ -322,13 +349,13 @@ export const NFTCollection = () => {
     hashrate: "2.5 Gh/s",
     miningRate: "6.25 sBTC/d",
     powerConsumption: "23 kW/h",
-    monthlyIncome: "0.08 SOL",
+    get monthlyIncome() {
+      return calculateMonthlyIncome(this.miningRate);
+    },
     originalPrice: "0.8 SOL",
     discount: "50%",
     get salePrice() {
-      const numericPrice = parseFloat(this.originalPrice);
-      const numericDiscount = parseFloat(this.discount);
-      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
+      return calculateSalePrice(this.originalPrice, this.discount);
     },
   },
   {
@@ -338,13 +365,13 @@ export const NFTCollection = () => {
     hashrate: "1 Gh/s",
     miningRate: "2.5 sBTC/d",
     powerConsumption: "10 kW/h",
-    monthlyIncome: "0.08 SOL",
+    get monthlyIncome() {
+      return calculateMonthlyIncome(this.miningRate);
+    },
     originalPrice: "0.4 SOL",
     discount: "50%",
     get salePrice() {
-      const numericPrice = parseFloat(this.originalPrice);
-      const numericDiscount = parseFloat(this.discount);
-      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
+      return calculateSalePrice(this.originalPrice, this.discount);
     },
   },
   {
@@ -354,13 +381,13 @@ export const NFTCollection = () => {
     hashrate: "400 Mh/s",
     miningRate: "1 sBTC/d",
     powerConsumption: "4 kW/h",
-    monthlyIncome: "0.08 SOL",
+    get monthlyIncome() {
+      return calculateMonthlyIncome(this.miningRate);
+    },
     originalPrice: "0.2 SOL",
     discount: "50%",
     get salePrice() {
-      const numericPrice = parseFloat(this.originalPrice);
-      const numericDiscount = parseFloat(this.discount);
-      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
+      return calculateSalePrice(this.originalPrice, this.discount);
     },
   },
   {
@@ -370,13 +397,13 @@ export const NFTCollection = () => {
     hashrate: "200 Mh/s",
     miningRate: "0.50 sBTC/d",
     powerConsumption: "2 kW/h",
-    monthlyIncome: "0.08 SOL",
+    get monthlyIncome() {
+      return calculateMonthlyIncome(this.miningRate);
+    },
     originalPrice: "0.1 SOL",
     discount: "50%",
     get salePrice() {
-      const numericPrice = parseFloat(this.originalPrice);
-      const numericDiscount = parseFloat(this.discount);
-      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
+      return calculateSalePrice(this.originalPrice, this.discount);
     },
   },
   {
@@ -386,13 +413,13 @@ export const NFTCollection = () => {
     hashrate: "100 Mh/s",
     miningRate: "0.25 sBTC/d",
     powerConsumption: "1 kW/h",
-    monthlyIncome: "0.08 SOL",
+    get monthlyIncome() {
+      return calculateMonthlyIncome(this.miningRate);
+    },
     originalPrice: "0.05 SOL",
     discount: "50%",
     get salePrice() {
-      const numericPrice = parseFloat(this.originalPrice);
-      const numericDiscount = parseFloat(this.discount);
-      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
+      return calculateSalePrice(this.originalPrice, this.discount);
     },
   },
 ];
