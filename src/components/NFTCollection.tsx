@@ -218,140 +218,185 @@ export const NFTCollection = () => {
 
   const visibleCount = 4;
 
-  const asicCollection = [
-    {
-      name: "ASIC SX Ultra Pro",
-      image: Asic_SX,
-      rarity: "Mithic",
-      hashrate: "600 Gh/s",
-      miningRate: "1500 sBTC/d",
-      powerConsumption: "3000 kW/h",
-      monthlyIncome: "0.5 SOL",
-      originalPrice: "5.0 SOL",
-      salePrice: "2.5 SOL",
-      discount: "50%",
+  const asicCollection: ASICCardProps[] = [
+  {
+    name: "ASIC SX Ultra Pro",
+    image: Asic_SX,
+    rarity: "Mithic",
+    hashrate: "600 Gh/s",
+    miningRate: "1500 sBTC/d",
+    powerConsumption: "3000 kW/h",
+    monthlyIncome: "0.5 SOL",
+    originalPrice: "51.2 SOL",
+    discount: "50%",
+    get salePrice() {
+      const numericPrice = parseFloat(this.originalPrice);
+      const numericDiscount = parseFloat(this.discount);
+      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
     },
-    {
-      name: "ASIC S21 XP+",
-      image: Asic_S21,
-      rarity: "Legendary",
-      hashrate: "250 Gh/s",
-      miningRate: "625 sBTC/d",
-      powerConsumption: "1460 kW/h",
-      monthlyIncome: "0.2 SOL",
-      originalPrice: "7.5 SOL",
-      salePrice: "3.75 SOL",
-      discount: "50%",
+  },
+  {
+    name: "ASIC S21 XP+",
+    image: Asic_S21,
+    rarity: "Legendary",
+    hashrate: "250 Gh/s",
+    miningRate: "625 sBTC/d",
+    powerConsumption: "1460 kW/h",
+    monthlyIncome: "0.2 SOL",
+    originalPrice: "25.6 SOL",
+    discount: "50%",
+    get salePrice() {
+      const numericPrice = parseFloat(this.originalPrice);
+      const numericDiscount = parseFloat(this.discount);
+      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
     },
-    {
-      name: "ASIC S19 XP+",
-      image: Asic_S19,
-      rarity: "Legendary",
-      hashrate: "100 Gh/s",
-      miningRate: "250 sBTC/d",
-      powerConsumption: "670 kW/h",
-      monthlyIncome: "0.1 SOL",
-      originalPrice: "10.0 SOL",
-      salePrice: "5.0 SOL",
-      discount: "50%",
+  },
+  {
+    name: "ASIC S19 XP+",
+    image: Asic_S19,
+    rarity: "Legendary",
+    hashrate: "100 Gh/s",
+    miningRate: "250 sBTC/d",
+    powerConsumption: "670 kW/h",
+    monthlyIncome: "0.1 SOL",
+    originalPrice: "12.8 SOL",
+    discount: "50%",
+    get salePrice() {
+      const numericPrice = parseFloat(this.originalPrice);
+      const numericDiscount = parseFloat(this.discount);
+      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
     },
-    {
-      name: "ASIC S17 XP",
-      image: Asic_S17,
-      rarity: "Epic",
-      hashrate: "40 Gh/s",
-      miningRate: "100 sBTC/d",
-      powerConsumption: "320 kW/h",
-      monthlyIncome: "0.08 SOL",
-      originalPrice: "15.0 SOL",
-      salePrice: "7.5 SOL",
-      discount: "50%",
+  },
+  {
+    name: "ASIC S17 XP",
+    image: Asic_S17,
+    rarity: "Epic",
+    hashrate: "40 Gh/s",
+    miningRate: "100 sBTC/d",
+    powerConsumption: "320 kW/h",
+    monthlyIncome: "0.08 SOL",
+    originalPrice: "6.4 SOL",
+    discount: "50%",
+    get salePrice() {
+      const numericPrice = parseFloat(this.originalPrice);
+      const numericDiscount = parseFloat(this.discount);
+      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
     },
-    {
-      name: "ASIC S15 XP",
-      image: Asic_S15,
-      rarity: "Epic",
-      hashrate: "15 Gh/s",
-      miningRate: "37.5 sBTC/d",
-      powerConsumption: "125 kW/h",
-      monthlyIncome: "0.08 SOL",
-      originalPrice: "15.0 SOL",
-      salePrice: "7.5 SOL",
-      discount: "50%",
+  },
+  {
+    name: "ASIC S15 XP",
+    image: Asic_S15,
+    rarity: "Epic",
+    hashrate: "15 Gh/s",
+    miningRate: "37.5 sBTC/d",
+    powerConsumption: "125 kW/h",
+    monthlyIncome: "0.08 SOL",
+    originalPrice: "3.2 SOL",
+    discount: "50%",
+    get salePrice() {
+      const numericPrice = parseFloat(this.originalPrice);
+      const numericDiscount = parseFloat(this.discount);
+      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
     },
-    {
-      name: "ASIC S11 XP",
-      image: Asic_S11,
-      rarity: "Epic",
-      hashrate: "6 Gh/s",
-      miningRate: "15 sBTC/d",
-      powerConsumption: "52 kW/h",
-      monthlyIncome: "0.08 SOL",
-      originalPrice: "15.0 SOL",
-      salePrice: "7.5 SOL",
-      discount: "50%",
+  },
+  {
+    name: "ASIC S11 XP",
+    image: Asic_S11,
+    rarity: "Epic",
+    hashrate: "6 Gh/s",
+    miningRate: "15 sBTC/d",
+    powerConsumption: "52 kW/h",
+    monthlyIncome: "0.08 SOL",
+    originalPrice: "1.6 SOL",
+    discount: "50%",
+    get salePrice() {
+      const numericPrice = parseFloat(this.originalPrice);
+      const numericDiscount = parseFloat(this.discount);
+      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
     },
-    {
-      name: "ASIC S9+",
-      image: Asic_S9,
-      rarity: "Rare",
-      hashrate: "2.5 Gh/s",
-      miningRate: "6.25 sBTC/d",
-      powerConsumption: "23 kW/h",
-      monthlyIncome: "0.08 SOL",
-      originalPrice: "15.0 SOL",
-      salePrice: "7.5 SOL",
-      discount: "50%",
+  },
+  {
+    name: "ASIC S9+",
+    image: Asic_S9,
+    rarity: "Rare",
+    hashrate: "2.5 Gh/s",
+    miningRate: "6.25 sBTC/d",
+    powerConsumption: "23 kW/h",
+    monthlyIncome: "0.08 SOL",
+    originalPrice: "0.8 SOL",
+    discount: "50%",
+    get salePrice() {
+      const numericPrice = parseFloat(this.originalPrice);
+      const numericDiscount = parseFloat(this.discount);
+      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
     },
-    {
-      name: "ASIC S7+",
-      image: Asic_S7,
-      rarity: "Rare",
-      hashrate: "1 Gh/s",
-      miningRate: "2.5 sBTC/d",
-      powerConsumption: "10 kW/h",
-      monthlyIncome: "0.08 SOL",
-      originalPrice: "15.0 SOL",
-      salePrice: "7.5 SOL",
-      discount: "50%",
+  },
+  {
+    name: "ASIC S7+",
+    image: Asic_S7,
+    rarity: "Rare",
+    hashrate: "1 Gh/s",
+    miningRate: "2.5 sBTC/d",
+    powerConsumption: "10 kW/h",
+    monthlyIncome: "0.08 SOL",
+    originalPrice: "0.4 SOL",
+    discount: "50%",
+    get salePrice() {
+      const numericPrice = parseFloat(this.originalPrice);
+      const numericDiscount = parseFloat(this.discount);
+      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
     },
-    {
-      name: "ASIC S5+",
-      image: Asic_S5,
-      rarity: "Rare",
-      hashrate: "400 Mh/s",
-      miningRate: "1 sBTC/d",
-      powerConsumption: "4 kW/h",
-      monthlyIncome: "0.08 SOL",
-      originalPrice: "15.0 SOL",
-      salePrice: "7.5 SOL",
-      discount: "50%",
+  },
+  {
+    name: "ASIC S5+",
+    image: Asic_S5,
+    rarity: "Rare",
+    hashrate: "400 Mh/s",
+    miningRate: "1 sBTC/d",
+    powerConsumption: "4 kW/h",
+    monthlyIncome: "0.08 SOL",
+    originalPrice: "0.2 SOL",
+    discount: "50%",
+    get salePrice() {
+      const numericPrice = parseFloat(this.originalPrice);
+      const numericDiscount = parseFloat(this.discount);
+      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
     },
-    {
-      name: "ASIC S3",
-      image: Asic_S3,
-      rarity: "Common",
-      hashrate: "200 Mh/s",
-      miningRate: "0.50 sBTC/d",
-      powerConsumption: "2 kW/h",
-      monthlyIncome: "0.08 SOL",
-      originalPrice: "15.0 SOL",
-      salePrice: "7.5 SOL",
-      discount: "50%",
+  },
+  {
+    name: "ASIC S3",
+    image: Asic_S3,
+    rarity: "Common",
+    hashrate: "200 Mh/s",
+    miningRate: "0.50 sBTC/d",
+    powerConsumption: "2 kW/h",
+    monthlyIncome: "0.08 SOL",
+    originalPrice: "0.1 SOL",
+    discount: "50%",
+    get salePrice() {
+      const numericPrice = parseFloat(this.originalPrice);
+      const numericDiscount = parseFloat(this.discount);
+      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
     },
-    {
-      name: "ASIC S1",
-      image: Asic_S1,
-      rarity: "Common",
-      hashrate: "100 Mh/s",
-      miningRate: "0.25 sBTC/d",
-      powerConsumption: "1 kW/h",
-      monthlyIncome: "0.08 SOL",
-      originalPrice: "15.0 SOL",
-      salePrice: "7.5 SOL",
-      discount: "50%",
+  },
+  {
+    name: "ASIC S1",
+    image: Asic_S1,
+    rarity: "Common",
+    hashrate: "100 Mh/s",
+    miningRate: "0.25 sBTC/d",
+    powerConsumption: "1 kW/h",
+    monthlyIncome: "0.08 SOL",
+    originalPrice: "0.05 SOL",
+    discount: "50%",
+    get salePrice() {
+      const numericPrice = parseFloat(this.originalPrice);
+      const numericDiscount = parseFloat(this.discount);
+      return (numericPrice * (1 - numericDiscount / 100)).toFixed(2) + " SOL";
     },
-  ];
+  },
+];
+
 
   const handleToggle = () => {
     if (expanded) {
