@@ -44,6 +44,7 @@ function calculateSalePrice(originalPrice: string, discount: string): string {
   const numericDiscount = parseFloat(discount);
   if (isNaN(numericPrice) || isNaN(numericDiscount)) return originalPrice;
   const result = numericPrice * (1 - numericDiscount / 100);
+  if (result <= 0.03) return result.toFixed(3) + " SOL";
   return result.toFixed(2) + " SOL";
 }
 
