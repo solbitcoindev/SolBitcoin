@@ -63,6 +63,8 @@ export const MiningModal: React.FC<MiningModalProps> = ({ isOpen, onClose }) => 
             <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-primary animate-bounce" />
             Mining Coming Soon
             <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-primary animate-bounce" />
+          
+          {/* Email */}
           </DialogTitle>
           <DialogDescription className="text-center text-muted-foreground pt-3 sm:pt-4 text-base sm:text-lg">
             Be the first to mine{" "}
@@ -70,7 +72,7 @@ export const MiningModal: React.FC<MiningModalProps> = ({ isOpen, onClose }) => 
           </DialogDescription>
         </DialogHeader>
 
-        {/* Email signup */}
+        {/* Email signup 
         <div className="w-full max-w-md">
           <h3 className="flex items-center justify-center gap-2 font-semibold mb-4 sm:mb-6 text-lg sm:text-2xl bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
             <Mail className="w-6 h-6 sm:w-7 sm:h-7 text-accent animate-pulse" />
@@ -88,7 +90,7 @@ export const MiningModal: React.FC<MiningModalProps> = ({ isOpen, onClose }) => 
               Notify Me
             </Button>
           </div>
-        </div>
+        </div> */}
 
         {/* Соцсети + Close */}
         <div className="flex flex-col items-center gap-8 sm:gap-10">
