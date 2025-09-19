@@ -95,54 +95,55 @@ const TeamMember = ({
 };
 
 export const Team = () => {
-  const teamMembers: TeamMemberProps[] = [
+ const teamMembers: TeamMemberProps[] = [
     {
-      name: "Vitalik Buterin",
-      role: "CEO & Co-Founder",
-      description:
-        "Blockchain expert with 10+ years in crypto mining and ecosystem development. Led multiple successful DeFi projects.",
-      avatar: teamMember1,
-      socials: {
-        twitter: "#",
-        linkedin: "#",
-        github: "#",
-      },
+    name: "Ethan Parker",
+    role: "CEO & Co-Founder",
+    description:
+      "Blockchain expert with 10+ years in crypto mining and ecosystem development. Led multiple successful DeFi projects.",
+    avatar: teamMember1,
+    socials: {
+      twitter: "#",
+      linkedin: "#",
+      github: "#",
     },
-    {
-      name: "Pedro Rodriguez",
-      role: "CTO",
-      description:
-        "Former lead developer at major crypto exchange. Expert in Solana blockchain development and smart contract security.",
-      avatar: teamMember2,
-      socials: {
-        twitter: "#",
-        linkedin: "#",
-        github: "#",
-      },
+  },
+  {
+    name: "David Thompson",
+    role: "CTO",
+    description:
+      "Former lead developer at major crypto exchange. Expert in Solana blockchain development and smart contract security.",
+    avatar: teamMember2,
+    socials: {
+      twitter: "#",
+      linkedin: "#",
+      github: "#",
     },
-    {
-      name: "James Wilson",
-      role: "Head of Community",
-      description:
-        "Managed industrial-scale mining farms since 2017. Specialist in hardware optimization and renewable energy integration.",
-      avatar: teamMember2,
-      socials: {
-        twitter: "#",
-        linkedin: "#",
-      },
+  },
+  {
+    name: "James Wilson",
+    role: "Head of Community",
+    description:
+      "Managed industrial-scale mining farms since 2017. Specialist in hardware optimization and renewable energy integration.",
+    avatar: teamMember2,
+    socials: {
+      twitter: "#",
+      linkedin: "#",
     },
-    {
-      name: "Sarah Kim",
-      role: "Product Owner",
-      description:
-        "Crypto community builder with 500K+ followers. Expert in growth marketing and partnership development.",
-      avatar: teamMember2,
-      socials: {
-        twitter: "#",
-        linkedin: "#",
-      },
+  },
+  {
+    name: "William Carter",
+    role: "Product Owner",
+    description:
+      "Crypto community builder with 500K+ followers. Expert in growth marketing and partnership development.",
+    avatar: teamMember2,
+    socials: {
+      twitter: "#",
+      linkedin: "#",
     },
-  ];
+  },
+];
+
 
   return (
     <section id="team" className="py-24 bg-background">

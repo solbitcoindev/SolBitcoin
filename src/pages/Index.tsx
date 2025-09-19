@@ -54,7 +54,7 @@ const Index = () => {
         'Convert kW to SOL tokens',
         'Upgrade power plants',
         'Market-based income system',
-        'Daily reward multipliers',
+        'Mint and trade Power Plant NFTs',
       ],
       gradient: 'bg-gradient-to-br from-secondary to-warning',
       glowColor: 'glow-secondary',
@@ -65,10 +65,10 @@ const Index = () => {
         'Deep dive into $sBTC mining operations. Use advanced tools and strategies to maximize your mining efficiency.',
       icon: minerIcon,
       features: [
-        'Advanced mining algorithms',
+        'Virtual mining of real tokens',
         'Solana blockchain integration',
-        'Mining pool participation',
-        'Hardware optimization',
+        'Daily token claim',
+        'Unlimited number of equipment to connect',
         'Passive income streams',
       ],
       gradient: 'bg-gradient-to-br from-primary to-success',
@@ -83,8 +83,8 @@ const Index = () => {
         'Portfolio management tools',
         'Staking mechanisms',
         'Governance participation',
-        'Yield farming opportunities',
-        'Risk assessment tools',
+        'Daily withdrawal of staking rewards',
+        'Access to exclusive investment opportunities',
       ],
       gradient: 'bg-gradient-to-br from-accent to-primary',
       glowColor: 'glow-accent',
@@ -100,7 +100,7 @@ const Index = () => {
     {
       icon: Coins,
       title: 'Real Rewards',
-      description: 'Earn actual TON tokens that can be traded on DEX platforms',
+      description: 'Earn actual $sBTC tokens that can be traded on DEX platforms',
     },
     {
       icon: Users,
@@ -129,7 +129,7 @@ const Index = () => {
           <div className="animate-fade-in-up">
             <h1 className="hero-title mb-6">SolBitcoin</h1>
             <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
-              An exciting crypto game that immerses players in the world of $sBTC mining through the Solana ecosystem.
+              An exciting crypto project that immerses players in the world of $sBTC mining through the Solana ecosystem.
               Choose your class and start earning real rewards.
             </p>
 

@@ -59,35 +59,64 @@ const RoadmapItem = ({ quarter, title, description, status, icon }: RoadmapItemP
 
 export const Roadmap = () => {
   const roadmapItems = [
-    {
-      quarter: 'Q4 2023',
-      title: 'Platform Launch',
-      description: 'Platform launch and token distribution. Initial community building and ecosystem development.',
-      status: 'completed' as const,
-      icon: <CheckCircle className="w-full h-full text-primary-foreground" />
-    },
-    {
-      quarter: 'Q1 2024',
-      title: 'Mining Farms',
-      description: 'First mining farms deployment across multiple regions. Initial ASIC NFT collection release.',
-      status: 'in-progress' as const,
-      icon: <Clock className="w-full h-full text-primary-foreground" />
-    },
-    {
-      quarter: 'Q2 2024',
-      title: 'Global Expansion',
-      description: 'Expansion to new regions and strategic partnerships. Advanced staking mechanisms implementation.',
-      status: 'upcoming' as const,
-      icon: <Target className="w-full h-full text-primary-foreground" />
-    },
-    {
-      quarter: 'Q3 2024',
-      title: 'DeFi Integration',
-      description: 'Full DeFi ecosystem integration with yield farming and liquidity pools. Mobile app launch.',
-      status: 'upcoming' as const,
-      icon: <Target className="w-full h-full text-primary-foreground" />
-    }
-  ];
+  {
+    quarter: 'Q3 2025',
+    title: 'App Launch',
+    description: 'SolBitcoin web application goes live, enabling users to manage and track their crypto assets seamlessly.',
+    status: 'completed' as const,
+    icon: <CheckCircle className="w-full h-full text-primary-foreground" />
+  },
+  {
+    quarter: 'Q3 2025',
+    title: 'NFT Listing on Magic Eden',
+    description: 'All ASIC NFTs have been minted and listed on Magic Eden, opening new opportunities for NFT trading and community engagement.',
+    status: 'completed' as const,
+    icon: <CheckCircle className="w-full h-full text-primary-foreground" />
+  },
+  {
+    quarter: 'Q4 2025',
+    title: 'V1.1 Update Development',
+    description: 'Development of Investor features that will allow users to manage crypto investments and Boosters functionality that will help accelerate energy generation and $tBTC mining.',
+    status: 'in-progress' as const,
+    icon: <Clock className="w-full h-full text-primary-foreground" />
+  },
+  {
+    quarter: 'Q4 2025',
+    title: '$sBTC Listing on DEX',
+    description: 'Launching SOL/sBTC trading pair on decentralized exchanges, which will enable seamless crypto trading and liquidity provision.',
+    status: 'in-progress' as const,
+    icon: <Clock className="w-full h-full text-primary-foreground" />
+  },
+  {
+    quarter: 'Q1 2026',
+    title: 'NFT Rental System Launch',
+    description: 'A system will be introduced allowing users to rent out their ASIC NFTs, enabling passive income streams and expanding participation in the SolBitcoin ecosystem.',
+    status: 'upcoming' as const,
+    icon: <Target className="w-full h-full text-primary-foreground" />
+  },
+  {
+    quarter: 'Q2 2026',
+    title: 'iOS & Android Integration',
+    description: 'Mobile apps will be released for iOS and Android, providing on-the-go access to SolBitcoin services, staking, and NFT management.',
+    status: 'upcoming' as const,
+    icon: <Target className="w-full h-full text-primary-foreground" />
+  },
+  {
+    quarter: 'Q3 2026',
+    title: '$sBTC Listing on CEX',
+    description: 'Listing on major centralized exchanges like Binance and Bybit will occur, increasing liquidity and trading opportunities for $sBTC holders.',
+    status: 'upcoming' as const,
+    icon: <Target className="w-full h-full text-primary-foreground" />
+  },
+  {
+    quarter: 'Q4 2026',
+    title: 'NFT Crafting Integration',
+    description: 'The NFT Crafting system will be launched, allowing users to combine or upgrade their ASIC NFTs to create more powerful and rare NFT, enhancing gameplay and investment potential within the SolBitcoin ecosystem.',
+    status: 'upcoming' as const,
+    icon: <Target className="w-full h-full text-primary-foreground" />
+  }
+];
+
 
   return (
     <section id="roadmap" className="py-24 bg-background-secondary">

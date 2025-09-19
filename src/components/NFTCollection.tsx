@@ -49,6 +49,7 @@ function calculateSalePrice(originalPrice: string, discount: string): string {
 }
 
 interface ASICCardProps {
+  id: number;
   name: string;
   image: string;
   rarity: string;
@@ -248,6 +249,7 @@ export const NFTCollection = () => {
 
   const asicCollection: ASICCardProps[] = [
   {
+    id: 11,
     name: "ASIC SX Ultra Pro",
     image: Asic_SX,
     rarity: "Mithic",
@@ -264,6 +266,7 @@ export const NFTCollection = () => {
     },
   },
   {
+    id: 10,
     name: "ASIC S21 XP+",
     image: Asic_S21,
     rarity: "Legendary",
@@ -280,6 +283,7 @@ export const NFTCollection = () => {
     },
   },
   {
+    id: 9,
     name: "ASIC S19 XP+",
     image: Asic_S19,
     rarity: "Legendary",
@@ -296,6 +300,7 @@ export const NFTCollection = () => {
     },
   },
   {
+    id: 8,
     name: "ASIC S17 XP",
     image: Asic_S17,
     rarity: "Epic",
@@ -312,6 +317,7 @@ export const NFTCollection = () => {
     },
   },
   {
+    id: 7,
     name: "ASIC S15 XP",
     image: Asic_S15,
     rarity: "Epic",
@@ -328,6 +334,7 @@ export const NFTCollection = () => {
     },
   },
   {
+    id: 6,
     name: "ASIC S11 XP",
     image: Asic_S11,
     rarity: "Epic",
@@ -344,6 +351,7 @@ export const NFTCollection = () => {
     },
   },
   {
+    id: 5,
     name: "ASIC S9+",
     image: Asic_S9,
     rarity: "Rare",
@@ -360,6 +368,7 @@ export const NFTCollection = () => {
     },
   },
   {
+    id: 4,
     name: "ASIC S7+",
     image: Asic_S7,
     rarity: "Rare",
@@ -376,6 +385,7 @@ export const NFTCollection = () => {
     },
   },
   {
+    id: 3,
     name: "ASIC S5+",
     image: Asic_S5,
     rarity: "Rare",
@@ -392,6 +402,7 @@ export const NFTCollection = () => {
     },
   },
   {
+    id: 2,
     name: "ASIC S3",
     image: Asic_S3,
     rarity: "Common",
@@ -408,6 +419,7 @@ export const NFTCollection = () => {
     },
   },
   {
+    id: 1,
     name: "ASIC S1",
     image: Asic_S1,
     rarity: "Common",
@@ -487,9 +499,8 @@ export const NFTCollection = () => {
             🎉 Launch Special: 50% OFF All ASICs! 🎉
           </Badge>*/}
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Own exclusive mining equipment NFTs that generate real passive
-            income. Each ASIC provides unique mining capabilities and monthly
-            SOL rewards.
+            Own exclusive mining equipment NFTs and start earning real passive income! 
+            Each ASIC comes with unique mining power and generates $sBTC — your gateway to effortless crypto rewards.
           </p>
         </div>
 
@@ -498,10 +509,11 @@ export const NFTCollection = () => {
           {/* Сетка карточек */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto overflow-visible">
             {asicCollection
+              .sort((a, b) => a.id - b.id)
               .slice(0, expanded ? asicCollection.length : visibleCount)
               .map((asic, index) => (
                 <div
-                  key={asic.name}
+                  key={asic.id}
                   style={{ animationDelay: `${index * 0.1}s` }}
                   className="transform transition-transform opacity-0 translate-y-4 animate-fade-in"
                 >
