@@ -472,6 +472,42 @@
   border-radius: 0.75rem; /* скругление под rounded-xl */
 }
 
+/* Error glow (red) for containers */
+@keyframes glow-gradient-error {
+  0% { box-shadow: 0 0 8px rgba(255,0,0,0.25), inset 0 0 6px rgba(255,0,0,0.15); }
+  25% { box-shadow: 0 0 14px rgba(255,80,80,0.35), inset 0 0 8px rgba(255,80,80,0.2); }
+  50% { box-shadow: 0 0 12px rgba(255,0,0,0.25), inset 0 0 8px rgba(255,0,0,0.25); }
+  75% { box-shadow: 0 0 14px rgba(255,80,80,0.35), inset 0 0 8px rgba(255,80,80,0.2); }
+  100% { box-shadow: 0 0 8px rgba(255,0,0,0.25), inset 0 0 6px rgba(255,0,0,0.15); }
+}
+
+.animate-glow-gradient-error {
+  animation: glow-gradient-error 4s ease-in-out infinite;
+  border-radius: 0.75rem;
+}
+
+/* Success and Warning modal glows */
+@keyframes glow-success {
+  0%, 100% { box-shadow: 0 0 14px rgba(34,197,94,0.35); }
+  50% { box-shadow: 0 0 26px rgba(34,197,94,0.55); }
+}
+.animate-glow-success { animation: glow-success 3s ease-in-out infinite; }
+
+@keyframes glow-warning {
+  0%, 100% { box-shadow: 0 0 14px rgba(234,179,8,0.35); }
+  50% { box-shadow: 0 0 26px rgba(234,179,8,0.55); }
+}
+.animate-glow-warning { animation: glow-warning 3s ease-in-out infinite; }
+
+/* Toast progress bar */
+@keyframes toast-progress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+.animate-toast-progress {
+  animation: toast-progress 5s linear forwards;
+}
+
 @keyframes input-glow {
   0% {
     box-shadow:
@@ -503,6 +539,40 @@
 .animate-input-glow {
   animation: input-glow 4s ease-in-out infinite;
   border-radius: 0.5rem; /* под rounded */
+}
+
+/* Error glow (red) for input */
+@keyframes input-glow-error {
+  0% {
+    box-shadow:
+      inset 0 0 4px rgba(255, 0, 0, 0.15),
+      0 0 4px rgba(255, 0, 0, 0.2);
+  }
+  25% {
+    box-shadow:
+      inset 0 0 6px rgba(255, 60, 60, 0.25),
+      0 0 6px rgba(255, 60, 60, 0.3);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 5px rgba(255, 0, 0, 0.2),
+      0 0 5px rgba(255, 0, 0, 0.25);
+  }
+  75% {
+    box-shadow:
+      inset 0 0 6px rgba(255, 60, 60, 0.25),
+      0 0 6px rgba(255, 60, 60, 0.3);
+  }
+  100% {
+    box-shadow:
+      inset 0 0 4px rgba(255, 0, 0, 0.15),
+      0 0 4px rgba(255, 0, 0, 0.2);
+  }
+}
+
+.animate-input-glow-error {
+  animation: input-glow-error 4s ease-in-out infinite;
+  border-radius: 0.5rem;
 }
 
 

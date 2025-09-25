@@ -8,6 +8,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Rocket, Mail, Users } from "lucide-react";
+import { subscribeEmail, validateEmailForSubscribe } from "@/components/SiteModal";
+import { toast } from "@/components/ui/use-toast";
 
 import twitterIcon from "@/assets/icons/social/x_logo.webp";
 import discordIcon from "@/assets/icons/social/Discord_logo.webp";
@@ -27,45 +29,48 @@ export const MiningModal: React.FC<MiningModalProps> = ({ isOpen, onClose }) => 
   }, []);
 
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [submittedAttempt, setSubmittedAttempt] = useState(false);
+  // Используем тосты вместо отдельных модалок успеха/предупреждения
+
+  const isValidEmail = (value: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+  };
+
+  const hasNonAscii = (value: string) => /[^\x00-\x7F]/.test(value);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    const value = e.target.value;
+    setEmail(value);
+    if (submittedAttempt) {
+      if (!value) {
+        setEmailError("Incorrect email");
+      } else if (!isValidEmail(value)) {
+        setEmailError("Incorrect email");
+      } else {
+        setEmailError(null);
+      }
+    }
   };
 
   const handleNotify = async () => {
-    if (!email || !email.includes("@")) {
-      alert("Please enter a valid email");
+    setSubmittedAttempt(true);
+    const validation = validateEmailForSubscribe(email);
+    if (!validation.ok) {
+      setEmailError(validation.uiError ?? null);
+      if (validation.toast) {
+        toast({ title: validation.toast.title, description: validation.toast.description, variant: validation.toast.variant as any });
+      }
       return;
     }
 
-    try {
-      // Получаем API URL из переменной окружения
-      const apiUrl = import.meta.env.VITE_API_URL;
-      console.log("API URL:", apiUrl); // теперь должно вывести http://localhost:5001
-
-
-      if (!apiUrl) {
-        alert("API URL is not defined. Check your .env file.");
-        return;
-      }
-
-      const response = await fetch(`${apiUrl}/subscribe`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("You have been added to the notification list!");
-        setEmail("");
-      } else {
-        alert(`Error: ${data.error}`);
-      }
-    } catch (error) {
-      console.error("Fetch failed:", error);
-      alert("Failed to send email. Please try again later.");
+    const result = await subscribeEmail(email);
+    toast({ title: result.title, description: result.description, variant: result.variant as any });
+    if (result.variant === "success") {
+      setEmail("");
+      setEmailError(null);
+      setSubmittedAttempt(false);
     }
   };
 
@@ -77,6 +82,7 @@ export const MiningModal: React.FC<MiningModalProps> = ({ isOpen, onClose }) => 
   ];
 
   return (
+    <>
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-full sm:max-w-lg bg-[#0a0a0f] border border-primary/30 rounded-3xl shadow-[0_0_30px_rgba(0,255,200,0.15)] backdrop-blur-xl p-4 sm:p-8 flex flex-col items-center gap-8 sm:gap-10">
         <DialogHeader className="text-center">
@@ -96,21 +102,28 @@ export const MiningModal: React.FC<MiningModalProps> = ({ isOpen, onClose }) => 
             <Mail className="w-6 h-6 sm:w-7 sm:h-7 text-accent animate-pulse" />
             Be the First to Mine $sBTC!
           </h3>
-          <div className="flex rounded-xl overflow-hidden border border-primary/40 animate-glow-gradient">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={handleEmailChange}
-              className="flex-1 h-10 sm:h-12 px-3 sm:px-4 bg-background/80 text-white placeholder-gray-400 focus:outline-none animate-input-glow"
-            />
-            <Button
-              onClick={handleNotify}
-              className="h-10 sm:h-12 rounded-none bg-gradient-to-r from-primary to-accent text-white font-semibold px-4 sm:px-6 text-sm sm:text-base transition-transform hover:scale-105 bg-[length:200%_200%] animate-gradient-x"
-            >
-              Notify Me
-            </Button>
-          </div>
+          <form onSubmit={(e) => { e.preventDefault(); handleNotify(); }}>
+            <div className={`flex rounded-xl overflow-hidden border ${emailError ? "border-red-500 animate-glow-gradient-error" : "border-primary/40 animate-glow-gradient"}`}>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={handleEmailChange}
+                aria-invalid={!!emailError}
+                aria-describedby={emailError ? "email-error" : undefined}
+                className={`flex-1 h-10 sm:h-12 px-3 sm:px-4 bg-background/80 text-white placeholder-gray-400 focus:outline-none ${emailError ? "animate-input-glow-error" : "animate-input-glow"}`}
+              />
+              <Button
+                type="submit"
+                className="h-10 sm:h-12 rounded-none bg-gradient-to-r from-primary to-accent text-white font-semibold px-4 sm:px-6 text-sm sm:text-base transition-transform hover:scale-105 bg-[length:200%_200%] animate-gradient-x"
+              >
+                Notify Me
+              </Button>
+            </div>
+          </form>
+          {emailError && (
+            <p id="email-error" className="mt-2 text-sm text-red-500">{emailError}</p>
+          )}
         </div>
 
         {/* Social links + close */}
@@ -153,6 +166,9 @@ export const MiningModal: React.FC<MiningModalProps> = ({ isOpen, onClose }) => 
         </div>
       </DialogContent>
     </Dialog>
+
+    {/* Тосты используются вместо отдельных модалок */}
+    </>
   );
 };
 
