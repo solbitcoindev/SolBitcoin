@@ -73,7 +73,7 @@ export type SubscribeResult = {
 
 export async function subscribeEmail(email: string): Promise<SubscribeResult> {
   try {
-    const apiUrl = import.meta.env.VITE_API_URL as string | undefined;
+    const apiUrl = (import.meta.env.VITE_API_URL as string | undefined) ?? "https://email-handler-84h0.onrender.com";
     if (!apiUrl) {
       return {
         variant: "error",
