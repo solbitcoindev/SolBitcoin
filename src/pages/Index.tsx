@@ -15,6 +15,7 @@ import Launcher from '@/components/Launcher';
 import MiningModal from '@/components/MiningModal'; // Импорт модалки
 import { ArrowRight, Zap, Shield, Coins, Users } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import FAQ from '@/components/FAQ'; // Импорт компонента FAQ
 
 import sBTCLogo from '@/assets/icons/logo/Logo_sBTC.png';
 import heroBackground from '@/assets/gif/BG_main.gif';
@@ -266,6 +267,12 @@ const Index = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="FAQ"> 
+        <FAQ />
+      </section>
+      
+
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-r from-background to-background-tertiary relative overflow-hidden">
         <div className="container mx-auto px-4 text-center relative z-10">
@@ -300,7 +307,7 @@ const Index = () => {
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-glow opacity-30"></div>
       </section>
-
+  
       {/* Footer */}
       <footer className="py-12 bg-background border-t border-border">
         <div className="container mx-auto px-4">

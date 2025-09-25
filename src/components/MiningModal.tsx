@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -26,53 +26,71 @@ export const MiningModal: React.FC<MiningModalProps> = ({ isOpen, onClose }) => 
     };
   }, []);
 
+  const [email, setEmail] = useState("");
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handleNotify = async () => {
+    if (!email || !email.includes("@")) {
+      alert("Please enter a valid email");
+      return;
+    }
+
+    try {
+      // Получаем API URL из переменной окружения
+      const apiUrl = import.meta.env.VITE_API_URL;
+      console.log("API URL:", apiUrl); // теперь должно вывести http://localhost:5001
+
+
+      if (!apiUrl) {
+        alert("API URL is not defined. Check your .env file.");
+        return;
+      }
+
+      const response = await fetch(`${apiUrl}/subscribe`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("You have been added to the notification list!");
+        setEmail("");
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Fetch failed:", error);
+      alert("Failed to send email. Please try again later.");
+    }
+  };
+
   const socialLinks = [
-    {
-      icon: twitterIcon,
-      label: "Twitter",
-      href: "https://x.com/sBTC_x",
-      color: "hover:text-blue-400",
-    },
-    {
-      icon: discordIcon,
-      label: "Discord",
-      href: "https://discord.com/invite/dRzrfpbd",
-      color: "hover:text-indigo-400",
-    },
-    {
-      icon: telegramIcon,
-      label: "Telegram",
-      href: "#",
-      color: "hover:text-blue-500",
-    },
-    {
-      icon: mediumIcon,
-      label: "Medium",
-      href: "#",
-      color: "hover:text-green-400",
-    },
+    { icon: twitterIcon, label: "Twitter", href: "https://x.com/sBTC_x", color: "hover:text-blue-400" },
+    { icon: discordIcon, label: "Discord", href: "https://discord.com/invite/dRzrfpbd", color: "hover:text-indigo-400" },
+    { icon: telegramIcon, label: "Telegram", href: "#", color: "hover:text-blue-500" },
+    { icon: mediumIcon, label: "Medium", href: "#", color: "hover:text-green-400" },
   ];
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-full sm:max-w-lg bg-[#0a0a0f] border border-primary/30 rounded-3xl shadow-[0_0_30px_rgba(0,255,200,0.15)] backdrop-blur-xl p-4 sm:p-8 flex flex-col items-center gap-8 sm:gap-10">
-  
-        {/* Заголовок */}
         <DialogHeader className="text-center">
           <DialogTitle className="flex items-center justify-center gap-2 sm:gap-3 text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent drop-shadow-lg">
             <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-primary animate-bounce" />
             Mining Coming Soon
             <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-primary animate-bounce" />
-          
-          {/* Email */}
           </DialogTitle>
           <DialogDescription className="text-center text-muted-foreground pt-3 sm:pt-4 text-base sm:text-lg">
-            Be the first to mine{" "}
-            <span className="text-primary font-semibold">$sBTC</span> after launch. Stay tuned and don’t miss out!
+            Be the first to mine <span className="text-primary font-semibold">$sBTC</span> after launch. Stay tuned!
           </DialogDescription>
         </DialogHeader>
 
-        {/* Email signup 
+        {/* Email signup */}
         <div className="w-full max-w-md">
           <h3 className="flex items-center justify-center gap-2 font-semibold mb-4 sm:mb-6 text-lg sm:text-2xl bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
             <Mail className="w-6 h-6 sm:w-7 sm:h-7 text-accent animate-pulse" />
@@ -82,17 +100,20 @@ export const MiningModal: React.FC<MiningModalProps> = ({ isOpen, onClose }) => 
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={handleEmailChange}
               className="flex-1 h-10 sm:h-12 px-3 sm:px-4 bg-background/80 text-white placeholder-gray-400 focus:outline-none animate-input-glow"
             />
             <Button
+              onClick={handleNotify}
               className="h-10 sm:h-12 rounded-none bg-gradient-to-r from-primary to-accent text-white font-semibold px-4 sm:px-6 text-sm sm:text-base transition-transform hover:scale-105 bg-[length:200%_200%] animate-gradient-x"
             >
               Notify Me
             </Button>
           </div>
-        </div> */}
+        </div>
 
-        {/* Соцсети + Close */}
+        {/* Social links + close */}
         <div className="flex flex-col items-center gap-8 sm:gap-10">
           <div>
             <h3 className="flex items-center justify-center gap-2 font-semibold mb-4 sm:mb-6 text-lg sm:text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">

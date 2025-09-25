@@ -17,6 +17,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenLauncher }) => {
     { label: 'Roadmap', href: '#roadmap' },
     { label: 'Team', href: '#team' },
     { label: 'About', href: '#about' },
+    { label: 'FAQ', href: '#FAQ' },
   ];
 
   return (
@@ -27,7 +28,9 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenLauncher }) => {
           <div className="flex items-center mt-2 md:mt-0 space-x-2">
             <img src={sBTCLogo} alt="sBTC Logo" className="w-8 h-8 object-contain" />
             <h1 className="text-2xl font-bold gradient-text font-space">
+              <a href="https://solbitcoin.vercel.app/" target="_blank" rel="noopener noreferrer">
               SolBitcoin
+              </a>
             </h1>
           </div>
 

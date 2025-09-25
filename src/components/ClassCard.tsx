@@ -11,9 +11,9 @@ interface ClassCardProps {
 }
 
 const links: Record<string, string> = {
-  Energizer: "https://solbitcoin.gitbook.io/white-paper/game-mechanics/energizer-class",
-  Miner: "https://solbitcoin.gitbook.io/white-paper/game-mechanics/miner-class",
-  Investor: "https://solbitcoin.gitbook.io/white-paper/game-mechanics/investor-class",
+  Energizer: "https://solbitcoin.gitbook.io/white-paper/game-mechanics/energizer",
+  Miner: "https://solbitcoin.gitbook.io/white-paper/game-mechanics/miner",
+  Investor: "https://solbitcoin.gitbook.io/white-paper/game-mechanics/investor",
 };
 
 export const ClassCard = ({ title, description, icon, features, gradient, glowColor }: ClassCardProps) => {
