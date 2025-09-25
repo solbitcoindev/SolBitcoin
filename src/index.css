@@ -96,6 +96,12 @@
   html {
     scroll-behavior: smooth;
   }
+  
+  /* Prevent horizontal scroll on mobile and desktop */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
 }
 
 @layer components {

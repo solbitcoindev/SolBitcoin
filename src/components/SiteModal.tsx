@@ -2,6 +2,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Button } from "@/components/ui/button";
 import { CheckCircle, AlertTriangle, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from "@/components/ui/drawer";
 
 type MessageVariant = "success" | "warning" | "error" | "info";
 
@@ -30,6 +32,7 @@ export function SiteModal(props: SiteModalProps) {
 }
 
 function MessageModal({ isOpen, onClose, variant = "info", title, description, confirmText, onConfirm }: MessageModalProps) {
+  const isMobile = useIsMobile();
   const Icon = variant === "success" ? CheckCircle : variant === "warning" ? AlertTriangle : variant === "error" ? AlertCircle : null;
   const iconColor = variant === "success" ? "text-green-500" : variant === "warning" ? "text-yellow-500" : variant === "error" ? "text-red-500" : "text-primary";
   const headerText = title ?? (variant === "success" ? "Success" : variant === "warning" ? "Warning" : variant === "error" ? "Error" : "Info");
@@ -39,6 +42,32 @@ function MessageModal({ isOpen, onClose, variant = "info", title, description, c
     onConfirm?.();
     onClose();
   };
+
+  if (isMobile) {
+    return (
+      <Drawer open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
+        <DrawerContent className="px-4 pb-4">
+          <DrawerHeader>
+            <DrawerTitle className="flex items-center gap-2">
+              {Icon && <Icon className={cn("h-5 w-5", iconColor)} />}
+              {headerText}
+            </DrawerTitle>
+            {descriptionText && (
+              <DrawerDescription>
+                {descriptionText}
+              </DrawerDescription>
+            )}
+          </DrawerHeader>
+          <div className="flex justify-end gap-2 px-4">
+            <Button variant="outline" onClick={onClose}>Close</Button>
+            {confirmText && (
+              <Button onClick={handleConfirm}>{confirmText}</Button>
+            )}
+          </div>
+        </DrawerContent>
+      </Drawer>
+    );
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
